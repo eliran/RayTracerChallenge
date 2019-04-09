@@ -48,3 +48,9 @@ extension Tuple {
         return tuple(x: lhs.x * rhs, y: lhs.y * rhs, z: lhs.z * rhs, w: lhs.w * rhs)
     }
 }
+
+extension Tuple {
+    var magnitude: Double {
+        return sqrt(x*x + y*y + z*z + w*w)
+    }
+}

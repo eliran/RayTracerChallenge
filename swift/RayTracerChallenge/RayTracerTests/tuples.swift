@@ -92,4 +92,34 @@ class TuplesTest: XCTestCase {
 
         expect(a * 0.5) == tuple(x: 0.5, y: -1, z: 1.5, w: -2)
     }
+
+    func test_computing_magnitude_of_vector_1_0_0() {
+        let v = vector(x: 1, y: 0, z: 0)
+
+        expect(v.magnitude) == 1
+    }
+
+    func test_computing_magnitude_of_vector_0_1_0() {
+        let v = vector(x: 0, y: 1, z: 0)
+
+        expect(v.magnitude) == 1
+    }
+
+    func test_computing_magnitude_of_vector_0_0_1() {
+        let v = vector(x: 0, y: 0, z: 1)
+
+        expect(v.magnitude) == 1
+    }
+
+    func test_computing_magnitude_of_vector_1_2_3() {
+        let v = vector(x: 1, y: 2, z: 3)
+
+        expect(v.magnitude) == sqrt(14)
+    }
+
+    func test_computing_magnitude_of_vector_n1_n2_n3() {
+        let v = vector(x: -1, y: -2, z: -3)
+
+        expect(v.magnitude) == sqrt(14)
+    }
 }
