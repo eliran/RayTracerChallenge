@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		698C5023909618611528E3EB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5B3ED23329F09BB8EB37 /* main.swift */; };
+		B7E84EDF225C416000ED7177 /* RayTracerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E84EDE225C416000ED7177 /* RayTracerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,10 +26,20 @@
 /* Begin PBXFileReference section */
 		698C50A000CFCEB785256261 /* RayTracerChallenge */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracerChallenge; sourceTree = BUILT_PRODUCTS_DIR; };
 		698C5B3ED23329F09BB8EB37 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		B7E84EDC225C416000ED7177 /* RayTracerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RayTracerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7E84EDE225C416000ED7177 /* RayTracerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracerTests.swift; sourceTree = "<group>"; };
+		B7E84EE0225C416000ED7177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		698C5539617E9FCA997CAAB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7E84ED9225C416000ED7177 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +52,7 @@
 		698C5526D006DB655875BDDA = {
 			isa = PBXGroup;
 			children = (
+				B7E84EDD225C416000ED7177 /* RayTracerTests */,
 				698C57CCEE4E86D68C9C8F39 /* Products */,
 				698C5E7AA0CF7ED28B443A7E /* RayTracerChallenge */,
 			);
@@ -50,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				698C50A000CFCEB785256261 /* RayTracerChallenge */,
+				B7E84EDC225C416000ED7177 /* RayTracerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,6 +73,15 @@
 				698C5B3ED23329F09BB8EB37 /* main.swift */,
 			);
 			path = RayTracerChallenge;
+			sourceTree = "<group>";
+		};
+		B7E84EDD225C416000ED7177 /* RayTracerTests */ = {
+			isa = PBXGroup;
+			children = (
+				B7E84EDE225C416000ED7177 /* RayTracerTests.swift */,
+				B7E84EE0225C416000ED7177 /* Info.plist */,
+			);
+			path = RayTracerTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -82,13 +104,38 @@
 			productReference = 698C50A000CFCEB785256261 /* RayTracerChallenge */;
 			productType = "com.apple.product-type.tool";
 		};
+		B7E84EDB225C416000ED7177 /* RayTracerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7E84EE3225C416000ED7177 /* Build configuration list for PBXNativeTarget "RayTracerTests" */;
+			buildPhases = (
+				B7E84ED8225C416000ED7177 /* Sources */,
+				B7E84ED9225C416000ED7177 /* Frameworks */,
+				B7E84EDA225C416000ED7177 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RayTracerTests;
+			productName = RayTracerTests;
+			productReference = B7E84EDC225C416000ED7177 /* RayTracerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		698C5C1BBD76B465291AAEAD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1010;
 				ORGANIZATIONNAME = "Threeplay Inc.";
+				TargetAttributes = {
+					B7E84EDB225C416000ED7177 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = B2AK2W5225;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 698C56334EA81F32A2CA362C /* Build configuration list for PBXProject "RayTracerChallenge" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -103,9 +150,20 @@
 			projectRoot = "";
 			targets = (
 				698C55AA892004E572998DA2 /* RayTracerChallenge */,
+				B7E84EDB225C416000ED7177 /* RayTracerTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B7E84EDA225C416000ED7177 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		698C51D4290BE5BEA72F38C3 /* Sources */ = {
@@ -113,6 +171,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				698C5023909618611528E3EB /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7E84ED8225C416000ED7177 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7E84EDF225C416000ED7177 /* RayTracerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,8 +311,37 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		B7E84EE1225C416000ED7177 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B2AK2W5225;
+				INFOPLIST_FILE = RayTracerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.threeplay.RayTracerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		B7E84EE2225C416000ED7177 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B2AK2W5225;
+				INFOPLIST_FILE = RayTracerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.threeplay.RayTracerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -269,6 +364,16 @@
 				698C537B50DB4A2C0D648491 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7E84EE3225C416000ED7177 /* Build configuration list for PBXNativeTarget "RayTracerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7E84EE1225C416000ED7177 /* Debug */,
+				B7E84EE2225C416000ED7177 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
