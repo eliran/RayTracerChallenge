@@ -122,4 +122,22 @@ class TuplesTest: XCTestCase {
 
         expect(v.magnitude) == sqrt(14)
     }
+
+    func test_normalizing_vector_4_0_0_give_1_0_0() {
+        let v = vector(x: 4, y: 0, z: 0)
+
+        expect(v.normal) == vector(x: 1, y: 0, z: 0)
+    }
+
+    func test_normalizing_vector_1_2_3() {
+        let v = vector(x: 1, y: 2, z: 3)
+
+        expect(v.normal.approximate(digits: 5)) == vector(x: 0.26726, y: 0.53452, z: 0.80178)
+    }
+
+    func test_magnitude_of_normalized_vector() {
+        let v = vector(x: 1, y: 2, z: 3)
+
+        expect(v.normal.magnitude) == 1
+    }
 }

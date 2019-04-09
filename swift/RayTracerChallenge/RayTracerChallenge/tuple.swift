@@ -53,4 +53,21 @@ extension Tuple {
     var magnitude: Double {
         return sqrt(x*x + y*y + z*z + w*w)
     }
+
+    var normal: Tuple {
+        let magnitude = self.magnitude
+        return tuple(x: x / magnitude, y: y / magnitude, z: z / magnitude, w: w / magnitude)
+    }
+}
+
+extension Tuple {
+    func approximate(digits: Int) -> Tuple {
+        let multiplier = pow(10, Double(digits))
+
+        func limitDigits(_ value: Double) -> Double {
+            return floor(value * multiplier) / multiplier;
+        }
+
+        return vector(x: limitDigits(x), y: limitDigits(y), z: limitDigits(z))
+    }
 }
