@@ -80,4 +80,16 @@ class TuplesTest: XCTestCase {
 
         expect(-a) == tuple(x: -1, y: 2, z: -3, w: 4)
     }
+
+    func test_multiplying_tuple_by_scalar() {
+        let a = tuple(x: 1, y: -2, z: 3, w: -4)
+
+        expect(a * 3.5) == tuple(x: 3.5, y: -7, z: 10.5, w: -14)
+    }
+
+    func test_multiplying_tuple_by_a_fraction() {
+        let a = tuple(x: 1, y: -2, z: 3, w: -4)
+
+        expect(a * 0.5) == tuple(x: 0.5, y: -1, z: 1.5, w: -2)
+    }
 }

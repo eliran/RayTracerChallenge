@@ -43,4 +43,8 @@ extension Tuple {
     static prefix func -(value: Tuple) -> Tuple {
         return tuple(x: -value.x, y: -value.y, z: -value.z, w: -value.w)
     }
+
+    static func *(lhs: Tuple, rhs: Double) -> Tuple {
+        return tuple(x: lhs.x * rhs, y: lhs.y * rhs, z: lhs.z * rhs, w: lhs.w * rhs)
+    }
 }
