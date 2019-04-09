@@ -39,4 +39,45 @@ class TuplesTest: XCTestCase {
 
         expect(a) == tuple(x: 4, y: -4, z: 3, w: 0)
     }
+
+    func test_adding_two_tuples() {
+        let a1 = tuple(x: 3, y: -2, z: 5, w: 1)
+        let a2 = tuple(x: -2, y: 3, z: 1, w: 0)
+
+        expect(a1 + a2) == tuple(x: 1, y: 1, z: 6, w: 1)
+    }
+
+    func test_subtracting_two_tuples() {
+        let p1 = point(x: 3, y: 2, z: 1)
+        let p2 = point(x: 5, y: 6, z: 7)
+
+        expect(p1 - p2) == vector(x: -2, y: -4, z: -6)
+    }
+
+    func test_subtracting_a_vector_from_a_point() {
+        let p = point(x: 3, y: 2, z: 1)
+        let v = vector(x: 5, y: 6, z: 7)
+
+        expect(p - v) == point(x: -2, y: -4, z: -6)
+    }
+
+    func test_subtracting_two_vectors() {
+        let v1 = vector(x: 3, y: 2, z: 1)
+        let v2 = vector(x: 5, y: 6, z: 7)
+
+        expect(v1 - v2) == vector(x: -2, y: -4, z: -6)
+    }
+
+    func test_subtracting_a_vector_from_zero_vector() {
+        let zero = vector(x: 0, y: 0, z: 0)
+        let v = vector(x: 1, y: -2, z: 3)
+
+        expect(zero - v) == vector(x: -1, y: 2, z: -3)
+    }
+
+    func test_negating_a_tuple() {
+        let a = tuple(x: 1, y: -2, z: 3, w: -4)
+
+        expect(-a) == tuple(x: -1, y: 2, z: -3, w: 4)
+    }
 }
