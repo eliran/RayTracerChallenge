@@ -140,4 +140,11 @@ class TuplesTest: XCTestCase {
 
         expect(v.normal.magnitude) == 1
     }
+
+    func test_dot_product_of_two_tuples() {
+        let a = vector(x: 1, y: 2, z: 3)
+        let b = vector(x: 2, y: 3, z: 4)
+
+        expect(a.dot(b)) == 20
+    }
 }

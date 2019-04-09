@@ -61,6 +61,12 @@ extension Tuple {
 }
 
 extension Tuple {
+    func dot(_ other: Tuple) -> Double {
+        return x * other.x + y * other.y + z * other.z + w * other.w
+    }
+}
+
+extension Tuple {
     func approximate(digits: Int) -> Tuple {
         let multiplier = pow(10, Double(digits))
 
