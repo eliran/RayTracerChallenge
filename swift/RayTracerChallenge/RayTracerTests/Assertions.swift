@@ -6,16 +6,20 @@
 import XCTest
 
 extension XCTestCase {
-    func expect<T>(_ value: T) -> AssertExpectation<T> {
-        return AssertExpectation(value)
+    func expect<T>(_ value: T, file: StaticString = #file, line: UInt = #line) -> AssertExpectation<T> {
+        return AssertExpectation(value, file: file, line: line)
     }
 }
 
 class AssertExpectation<T> {
     private let value: T
+    private let file: StaticString
+    private let line: UInt
 
-    init(_ value: T) {
+    init(_ value: T, file: StaticString, line: UInt) {
         self.value = value
+        self.file = file
+        self.line = line
     }
 
 
@@ -23,22 +27,34 @@ class AssertExpectation<T> {
 
 extension AssertExpectation where T: Equatable {
     func to(equal other: T) {
-        XCTAssertEqual(value, other)
+        XCTAssertEqual(value, other, file: file, line: line)
+    }
+
+    @discardableResult
+    static func == (lhs: AssertExpectation<T>, rhs: T) -> Bool {
+        lhs.to(equal: rhs)
+        return false
     }
 }
 
 extension AssertExpectation where T: FloatingPoint {
     func to(equal other: T, accuracy: T = T.leastNormalMagnitude) {
-        XCTAssertEqual(value, other, accuracy: accuracy)
+        XCTAssertEqual(value, other, accuracy: accuracy, file: file, line: line)
+    }
+
+    @discardableResult
+    static func == (lhs: AssertExpectation<T>, rhs: T) -> Bool {
+        lhs.to(equal: rhs)
+        return false
     }
 }
 
 extension AssertExpectation where T == Bool {
     func toBeTrue() {
-        XCTAssertTrue(self.value)
+        XCTAssertTrue(self.value, file: file, line: line)
     }
 
     func toBeFalse() {
-        XCTAssertFalse(self.value)
+        XCTAssertFalse(self.value, file: file, line: line)
     }
 }
