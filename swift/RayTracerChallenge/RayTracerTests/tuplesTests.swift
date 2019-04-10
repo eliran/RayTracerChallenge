@@ -147,4 +147,12 @@ class TuplesTest: XCTestCase {
 
         expect(a.dot(b)) == 20
     }
+
+    func test_cross_product_of_two_vectors() {
+        let a = vector(x: 1, y: 2, z: 3)
+        let b = vector(x: 2, y: 3, z: 4)
+
+        expect(a.cross(b)) == vector(x: -1, y: 2, z: -1)
+        expect(b.cross(a)) == vector(x: 1, y: -2, z: 1)
+    }
 }

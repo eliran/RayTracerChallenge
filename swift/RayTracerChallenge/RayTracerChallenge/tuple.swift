@@ -12,6 +12,9 @@ struct Tuple {
     let w: Double
 }
 
+typealias Vector = Tuple
+typealias Point = Tuple
+
 func tuple(x: Double, y: Double, z: Double, w: Double) -> Tuple {
     return Tuple(x: x, y: y, z: z, w: w)
 }
@@ -63,6 +66,13 @@ extension Tuple {
 extension Tuple {
     func dot(_ other: Tuple) -> Double {
         return x * other.x + y * other.y + z * other.z + w * other.w
+    }
+
+    func cross(_ other: Tuple) -> Tuple {
+        return vector(
+            x: y * other.z - z * other.y,
+            y: z * other.x - x * other.z,
+            z: x * other.y - y * other.x)
     }
 }
 
