@@ -61,6 +61,12 @@ class CanvasTest: XCTestCase {
       expect(lines[2]) == "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204"
       expect(lines[3]) == "153 255 204 153 255 204 153 255 204 153 255 204 153"
    }
+
+   func test_ppm_file_terminates_with_new_line() {
+      let ppm = canvas(width: 5, height: 3).toPPM()
+
+      expect(ppm.suffix(1)) == "\n"
+   }
 }
 
 extension String {

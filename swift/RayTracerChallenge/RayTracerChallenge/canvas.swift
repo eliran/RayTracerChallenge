@@ -63,7 +63,7 @@ extension Canvas {
         }
 
         func add(component: Double) {
-            var componentOutput = "\(component.scale(to: 255))"
+            let componentOutput = "\(component.scale(to: 255))"
             let prependSpace = !pixelOutput.isEmpty
             let finalLength = pixelOutput.count + componentOutput.count + (prependSpace ? 1 : 0)
 
@@ -81,7 +81,7 @@ extension Canvas {
             flush()
         }
 
-        return output.joined(separator: "\n")
+        return output.joined(separator: "\n").appending("\n")
     }
 }
 
