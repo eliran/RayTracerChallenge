@@ -30,10 +30,16 @@ extension AssertExpectation where T: Equatable {
         XCTAssertEqual(value, other, file: file, line: line)
     }
 
-    @discardableResult
-    static func == (lhs: AssertExpectation<T>, rhs: T) -> Bool {
+    func to(notEqual other: T) {
+        XCTAssertNotEqual(value, other, file: file, line: line)
+    }
+
+    static func == (lhs: AssertExpectation<T>, rhs: T) {
         lhs.to(equal: rhs)
-        return false
+    }
+
+    static func != (lhs: AssertExpectation<T>, rhs: T) {
+        lhs.to(notEqual: rhs)
     }
 }
 
@@ -42,10 +48,16 @@ extension AssertExpectation where T: FloatingPoint {
         XCTAssertEqual(value, other, accuracy: accuracy, file: file, line: line)
     }
 
-    @discardableResult
-    static func == (lhs: AssertExpectation<T>, rhs: T) -> Bool {
+    func to(notEqual other: T, accuracy: T = T.leastNormalMagnitude) {
+        XCTAssertNotEqual(value, other, accuracy: accuracy, file: file, line: line)
+    }
+
+    static func == (lhs: AssertExpectation<T>, rhs: T) {
         lhs.to(equal: rhs)
-        return false
+    }
+
+    static func != (lhs: AssertExpectation<T>, rhs: T) {
+        lhs.to(notEqual: rhs)
     }
 }
 
