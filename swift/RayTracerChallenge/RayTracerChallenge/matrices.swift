@@ -150,8 +150,16 @@ extension Matrix {
 
 extension Matrix {
     var determinant: Double {
-        assert(self.rows == 2 && self.cols == 2)
-        return values[0]*values[3] - values[1]*values[2]
+        assert(self.rows == self.cols && self.rows >= 2)
+        // 2x2 matrix
+        if self.rows == 2 {
+            return values[0] * values[3] - values[1] * values[2]
+        }
+        var sum = 0.0
+        for c in 0..<self.cols {
+            sum += self.values[c] * self.cofactor(0, c)
+        }
+        return sum
     }
 
     func submatrix(_ row: Int, _ col: Int) -> Matrix {
@@ -168,5 +176,10 @@ extension Matrix {
 
     func minor(_ row: Int, _ col: Int) -> Double {
         return submatrix(row, col).determinant
+    }
+
+    func cofactor(_ row: Int, _ col: Int) -> Double {
+        let invert = (row+col) & 1 == 1 ? -1.0 : 1.0
+        return invert * minor(row, col)
     }
 }
