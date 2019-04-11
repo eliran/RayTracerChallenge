@@ -18,6 +18,10 @@ struct Matrix {
     fileprivate let cols: Int
 
     init(rows: Int, cols: Int, values: Double...) {
+        self.init(rows: rows, cols: cols, values: values)
+    }
+
+    init(rows: Int, cols: Int, values: [Double]) {
         assert(values.count == rows * cols)
         self.rows = rows
         self.cols = cols
@@ -33,6 +37,37 @@ extension Matrix {
         set(newValue) {
             values[row*cols + col] = newValue
         }
+    }
+}
+
+extension Matrix {
+    static func * (lhs: Matrix, rhs: Matrix) -> Matrix {
+        // Same square matrix
+        assert(lhs.rows == rhs.rows && lhs.cols == rhs.cols && lhs.cols == lhs.rows)
+        let dim = lhs.rows
+        var values = Array<Double>(repeating: 0, count: dim * dim)
+        for row in 0..<dim {
+            let rowBase = row * dim
+            for col in 0..<dim {
+                var sum: Double = 0
+                for i in 0..<dim {
+                    sum += lhs[row, i] * rhs[i, col]
+                }
+                values[rowBase + col] = sum
+            }
+        }
+        return Matrix(rows: lhs.rows, cols: rhs.cols, values: values)
+    }
+}
+
+extension Matrix {
+    static func * (lhs: Matrix, rhs: Tuple) -> Tuple {
+        assert(lhs.cols == 4 && lhs.rows == 4)
+        var values = Array<Double>(repeating: 0, count: 4)
+        for row in 0..<lhs.rows {
+            values[row] = lhs[row, 0] * rhs.x + lhs[row, 1] * rhs.y + lhs[row, 2] * rhs.z + lhs[row, 3] * rhs.w
+        }
+        return tuple(x: values[0], y: values[1], z: values[2], w: values[3])
     }
 }
 
@@ -97,4 +132,18 @@ func matrix2x2(_ values: Matrix2x2Type<Double>) -> Matrix {
         rows: 2, cols: 2,
         values: values.0.0, values.0.1,
                 values.1.0, values.1.1)
+}
+
+extension Matrix {
+    static let identity4x4 = Matrix(rows: 4, cols: 4, values: 1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)
+
+    var transposed: Matrix {
+        var transposedValues = Array<Double>(repeating: 0, count: self.values.count)
+        for row in 0..<self.rows {
+            for col in 0..<self.cols {
+                transposedValues[col*self.rows + row] = self.values[row*self.cols + col]
+            }
+        }
+        return Matrix(rows: self.cols, cols: self.rows, values: transposedValues)
+    }
 }
