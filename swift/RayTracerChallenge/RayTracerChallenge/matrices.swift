@@ -75,6 +75,13 @@ extension Matrix: Equatable {
     public static func ==(lhs: Matrix, rhs: Matrix) -> Bool {
         return lhs.values == rhs.values
     }
+
+    func approximate(digits: Int) -> Matrix {
+        let multiplier = Double.approximateMultiplier(digits: digits)
+        return Matrix(rows: self.rows, cols: self.cols, values: self.values.map {
+            $0.approximate(multiplier: multiplier)
+        })
+    }
 }
 
 struct Matrix4x4 {
@@ -185,5 +192,17 @@ extension Matrix {
 
     var isInvertible: Bool {
         return determinant != 0
+    }
+
+    var inverse: Matrix {
+        let det = determinant
+        assert(det != 0)
+        var values = Array<Double>(repeating: 0, count: self.values.count)
+        for row in 0..<self.rows {
+            for col in 0..<self.cols {
+                values[row*self.cols + col] = cofactor(col, row) / det
+            }
+        }
+        return Matrix(rows: self.rows, cols: self.cols, values: values)
     }
 }

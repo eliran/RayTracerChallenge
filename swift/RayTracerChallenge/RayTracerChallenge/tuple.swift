@@ -78,12 +78,24 @@ extension Tuple {
 
 extension Tuple {
     func approximate(digits: Int) -> Tuple {
-        let multiplier = pow(10, Double(digits))
+        let multiplier = Double.approximateMultiplier(digits: digits)
 
-        func limitDigits(_ value: Double) -> Double {
-            return floor(value * multiplier) / multiplier;
-        }
+        return vector(
+            x: x.approximate(multiplier: multiplier),
+            y: y.approximate(multiplier: multiplier),
+            z: z.approximate(multiplier: multiplier)
+        )
+    }
+}
 
-        return vector(x: limitDigits(x), y: limitDigits(y), z: limitDigits(z))
+extension Double {
+    static func approximateMultiplier(digits: Int) -> Double {
+        return pow(10, Double(digits))
+    }
+
+    func approximate(multiplier: Double) -> Double {
+        var preround = self * multiplier
+        preround.round()
+        return preround / multiplier
     }
 }
