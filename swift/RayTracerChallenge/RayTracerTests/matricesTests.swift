@@ -117,4 +117,12 @@ class MatricesTest: XCTestCase {
 
         expect(m.submatrix(2, 1)) == matrix3x3(((-6,1,6), (-8,8,6), (-7,-1,1)))
     }
+
+    func test_minor_of_a_3x3_matrix() {
+        let m = matrix3x3(((3,5,0), (2,-1,-7), (6,-1,5)))
+        let b = m.submatrix(1, 0)
+
+        expect(b.determinant) == 25
+        expect(m.minor(1, 0)) == 25
+    }
 }

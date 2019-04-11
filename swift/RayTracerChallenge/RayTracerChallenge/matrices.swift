@@ -165,4 +165,8 @@ extension Matrix {
         }
         return Matrix(rows: self.rows-1, cols: self.cols-1, values: values)
     }
+
+    func minor(_ row: Int, _ col: Int) -> Double {
+        return submatrix(row, col).determinant
+    }
 }
