@@ -153,4 +153,18 @@ class MatricesTest: XCTestCase {
         expect(m.cofactor(0, 3)) == 51
         expect(m.determinant) == -4071
     }
+
+    func test_testing_invertible_matrix_for_invertibility() {
+        let m = matrix4x4(((6,4,4,4), (5,5,7,6), (4,-9,3,-7), (9,1,7,-6)))
+
+        expect(m.determinant) == -2120
+        expect(m.isInvertible) == true
+    }
+
+    func test_testing_noninvertible_matrix_for_invertibility() {
+        let m = matrix4x4(((-4,2,-2,-3), (9,6,2,6), (0,-5,1,-5), (0,0,0,0)))
+
+        expect(m.determinant) == 0
+        expect(m.isInvertible) == false
+    }
 }
