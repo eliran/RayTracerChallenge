@@ -147,3 +147,22 @@ extension Matrix {
         return Matrix(rows: self.cols, cols: self.rows, values: transposedValues)
     }
 }
+
+extension Matrix {
+    var determinant: Double {
+        assert(self.rows == 2 && self.cols == 2)
+        return values[0]*values[3] - values[1]*values[2]
+    }
+
+    func submatrix(_ row: Int, _ col: Int) -> Matrix {
+        var values = Array<Double>(repeating: 0, count: (self.rows-1)*(self.cols-1))
+        var i = 0
+        for r in 0..<self.rows where r != row {
+            for c in 0..<self.cols where c != col {
+                values[i] = self.values[r*self.cols + c]
+                i += 1
+            }
+        }
+        return Matrix(rows: self.rows-1, cols: self.cols-1, values: values)
+    }
+}

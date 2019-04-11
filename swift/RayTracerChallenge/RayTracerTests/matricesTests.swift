@@ -99,4 +99,22 @@ class MatricesTest: XCTestCase {
 
         expect(m.transposed) == m
     }
+
+    func test_calculating_the_determinant_of_2x2_matrix() {
+        let m = matrix2x2(((1,5), (-3,2)))
+
+        expect(m.determinant) == 17
+    }
+
+    func test_submatrix_of_3x3_matrix_is_2x2_matrix() {
+        let m = matrix3x3(((1,5,0), (-3,2,7), (0,6,-3)))
+
+        expect(m.submatrix(0, 2)) == matrix2x2(((-3,2), (0,6)))
+    }
+
+    func test_submatrix_of_4x4_matrix_is_3x3_matrix() {
+        let m = matrix4x4(((-6,1,1,6), (-8,5,8,6), (-1,0,8,2), (-7,1,-1,1)))
+
+        expect(m.submatrix(2, 1)) == matrix3x3(((-6,1,6), (-8,8,6), (-7,-1,1)))
+    }
 }
