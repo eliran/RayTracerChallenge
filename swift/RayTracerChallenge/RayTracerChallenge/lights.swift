@@ -16,6 +16,8 @@ struct PointLight {
     let intensity: Color
 }
 
+extension PointLight: Equatable {}
+
 extension Material {
     func lighting(light: PointLight, position: Point, eye: Vector, normal: Vector) -> Color {
         let effectiveColor = color * light.intensity

@@ -92,3 +92,9 @@ extension AssertExpectation where T == Bool {
         XCTAssertFalse(self.value, file: file, line: line)
     }
 }
+
+extension AssertExpectation where T: Sequence, T.Element: Equatable {
+    func contains(_ value: T.Element) {
+        XCTAssertTrue(self.value.contains(value), "should contain: \(value)")
+    }
+}
