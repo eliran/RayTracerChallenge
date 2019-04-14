@@ -65,10 +65,6 @@ extension AssertExpectation where T: FloatingPoint {
     }
 }
 
-protocol ApproximationEquals: Equatable {
-    func approximate(digits: Int) -> Self
-}
-
 extension AssertExpectation where T: ApproximationEquals {
     func toApproximately(equal other: T, digits: Int = 5) {
         XCTAssertEqual(value.approximate(digits: 5), other.approximate(digits: 5), file: file, line: line)

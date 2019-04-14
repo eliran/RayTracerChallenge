@@ -4,6 +4,8 @@
 
 import Foundation
 
+let basePath = "/Users/eliranbe/Desktop/"
+
 func set(canvas: Canvas, _ point: Tuple, color: Color) {
     canvas[Int(point.x), canvas.height - Int(point.y)] = color
 }
@@ -24,8 +26,20 @@ i[1, 1] = 2
 print("t * modified identify = \(i * t)")
 
 
+print("Chapter 4 Challenge: Clock")
 
+let c4 = canvas(width: 300, height: 300)
 
+(0..<12).forEach { hour in
+    let angle = Double(hour) * .pi / 6
+    let p = point(x: 0, y: 140, z: 0)
+
+    let t = Matrix.identity4x4.rotate(z: angle).translate(x: 150, y: 150, z: 0)
+
+    set(canvas: c4, t * p, color: color(r: 1, g: Double(hour)/12.0, b: 0))
+}
+
+try? c4.toPPM().write(toFile: "\(basePath)/ch4_clock.ppm", atomically: true, encoding: .utf8)
 
 
 print("Starting projectile demo")
@@ -44,7 +58,7 @@ while projectileDemo.projectile.position.y > 0 {
     projectileDemo.tick()
 }
 
-try? c.toPPM().write(toFile: "/Users/eliranbe/Desktop/projectile.ppm", atomically: true, encoding: .utf8)
+try? c.toPPM().write(toFile: "\(basePath)/projectile.ppm", atomically: true, encoding: .utf8)
 
 print("Total ticks to hit the ground: \(projectileDemo.tickCount)")
 

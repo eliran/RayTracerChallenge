@@ -71,11 +71,13 @@ extension Matrix {
     }
 }
 
-extension Matrix: ApproximationEquals {
+extension Matrix: Equatable {
     public static func ==(lhs: Matrix, rhs: Matrix) -> Bool {
         return lhs.values == rhs.values
     }
+}
 
+extension Matrix: ApproximationEquals {
     func approximate(digits: Int) -> Matrix {
         let multiplier = Double.approximateMultiplier(digits: digits)
         return Matrix(rows: self.rows, cols: self.cols, values: self.values.map {

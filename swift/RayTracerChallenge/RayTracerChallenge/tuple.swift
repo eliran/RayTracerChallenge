@@ -5,6 +5,10 @@
 
 import Foundation
 
+protocol ApproximationEquals: Equatable {
+    func approximate(digits: Int) -> Self
+}
+
 struct Tuple {
     let x: Double
     let y: Double
