@@ -5,20 +5,35 @@
 
 import Foundation
 
-struct Sphere {
+class Sphere {
+    private(set) var transform: Matrix = Matrix.identity4x4
 }
 
-extension Sphere: Equatable {}
+extension Sphere: Equatable {
+    public static func ==(lhs: Sphere, rhs: Sphere) -> Bool {
+        return lhs.transform == rhs.transform
+    }
+}
 
 func sphere() -> Sphere {
     return Sphere()
 }
 
+extension Sphere {
+    @discardableResult
+    func set(transform: Matrix) -> Sphere {
+        self.transform = transform
+        return self
+    }
+}
+
 extension Ray {
     func intersects(_ sphere: Sphere) -> [Intersection<Sphere>] {
-        let sphereToRay = origin - point(x: 0, y: 0, z: 0)
-        let a = direction.dot(direction)
-        let b = 2 * direction.dot(sphereToRay)
+        let transformedRay = self.transform(sphere.transform.inverse)
+
+        let sphereToRay = transformedRay.origin - point(x: 0, y: 0, z: 0)
+        let a = transformedRay.direction.dot(transformedRay.direction)
+        let b = 2 * transformedRay.direction.dot(sphereToRay)
         let c = sphereToRay.dot(sphereToRay) - 1
 
         let discriminant = b*b - 4*a*c

@@ -33,3 +33,23 @@ extension Ray {
         return origin + direction * t
     }
 }
+
+extension Ray {
+    func transform(_ matrix: Matrix) -> Ray {
+        return Ray(origin: matrix * origin, direction: matrix * direction)
+    }
+}
+
+extension Intersection: Equatable {}
+
+func hit<O>(_ intersections: [Intersection<O>]) -> Intersection<O>? {
+    var bestIntersection: Intersection<O>? = nil
+    for i in intersections where i.t >= 0 {
+        if bestIntersection == nil {
+            bestIntersection = i
+        } else if let best = bestIntersection, best.t > i.t {
+            bestIntersection = i
+        }
+    }
+    return bestIntersection
+}

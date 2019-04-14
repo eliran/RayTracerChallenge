@@ -24,4 +24,22 @@ class RaysTests: XCTestCase {
         expect(r.position(-1)) == point(x: 1, y: 3, z: 4)
         expect(r.position(2.5)) == point(x: 4.5, y: 3, z: 4)
     }
+
+    func test_translating_a_ray() {
+        let r = ray(origin: point(x: 1, y: 2, z: 3), direction: vector(x: 0, y: 1, z: 0))
+
+        let r2 = r.transform(Matrix.translation(x: 3, y: 4, z: 5))
+
+        expect(r2.origin) == point(x: 4, y: 6, z: 8)
+        expect(r2.direction) == vector(x: 0, y: 1, z: 0)
+    }
+
+    func test_scaling_a_ray() {
+        let r = ray(origin: point(x: 1, y: 2, z: 3), direction: vector(x: 0, y: 1, z: 0))
+
+        let r2 = r.transform(Matrix.scaling(x: 2, y: 3, z: 4))
+
+        expect(r2.origin) == point(x: 2, y: 6, z: 12)
+        expect(r2.direction) == vector(x: 0, y: 3, z: 0)
+    }
 }
