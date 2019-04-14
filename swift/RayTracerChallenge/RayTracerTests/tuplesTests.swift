@@ -155,4 +155,18 @@ class TuplesTest: XCTestCase {
         expect(a.cross(b)) == vector(x: -1, y: 2, z: -1)
         expect(b.cross(a)) == vector(x: 1, y: -2, z: 1)
     }
+
+    func test_reflecting_a_vector_approaching_at_45_degrees() {
+        let v = vector(x: 1, y: -1, z: 0)
+        let n = vector(x: 0, y: 1, z: 0)
+
+        expect(v.reflect(around: n)) == vector(x: 1, y: 1, z: 0)
+    }
+
+    func test_reflecting_a_vector_off_a_slanted_surface() {
+        let v = vector(x: 0, y: -1, z: 0)
+        let n = vector(x: 2.0.squareRoot()/2, y: 2.0.squareRoot()/2, z: 0)
+
+        expect(v.reflect(around: n)) ~ vector(x: 1, y: 0, z: 0)
+    }
 }

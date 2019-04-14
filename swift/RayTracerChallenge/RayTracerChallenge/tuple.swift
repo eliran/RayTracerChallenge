@@ -109,3 +109,9 @@ extension Tuple {
         return Tuple(x: x, y: y, z: z, w: w)
     }
 }
+
+extension Tuple {
+    func reflect(around normal: Vector) -> Tuple {
+        return self - normal * 2 * self.dot(normal)
+    }
+}
