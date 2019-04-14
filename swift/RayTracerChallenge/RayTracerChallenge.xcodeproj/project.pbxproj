@@ -23,6 +23,7 @@
 		698C576CE9683BCB0F977F0D /* matrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C503DE9198A7617663B67 /* matrices.swift */; };
 		698C576D3A6AB581E119108B /* spheres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5058329B1A5161843994 /* spheres.swift */; };
 		698C5A0885B87462DBC0A2C6 /* raysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5602F69249392D0AF1B4 /* raysTests.swift */; };
+		698C5A51F2A7AA734FB56772 /* intersectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5B886C24DB5261374FED /* intersectionsTests.swift */; };
 		698C5AF4648C4F0A943DA719 /* canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C546E1D4900F39B6DA927 /* canvas.swift */; };
 		698C5B7A62E1A5D56FE24B50 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5A6EA7DF0BA5AFF331AF /* Assertions.swift */; };
 		698C5BBA2E5EA86BA8DFA006 /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5F5F292E998D8F34BB92 /* colors.swift */; };
@@ -60,6 +61,7 @@
 		698C58CEE8F7997AD2648DF2 /* projectile_demo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = projectile_demo.swift; sourceTree = "<group>"; };
 		698C5A6EA7DF0BA5AFF331AF /* Assertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
 		698C5B3ED23329F09BB8EB37 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		698C5B886C24DB5261374FED /* intersectionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = intersectionsTests.swift; sourceTree = "<group>"; };
 		698C5F5F292E998D8F34BB92 /* colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
 		698C5FB33720087887410797 /* spheresTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spheresTests.swift; sourceTree = "<group>"; };
 		B7E84EDC225C416000ED7177 /* RayTracerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RayTracerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +134,7 @@
 				698C5428A4D82F6F0A31E9F7 /* transformationsTests.swift */,
 				698C5602F69249392D0AF1B4 /* raysTests.swift */,
 				698C5FB33720087887410797 /* spheresTests.swift */,
+				698C5B886C24DB5261374FED /* intersectionsTests.swift */,
 			);
 			path = RayTracerTests;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				698C5F295EFEE3EEA4EC829E /* rays.swift in Sources */,
 				698C53D3FC4CBDF2FD50109B /* spheresTests.swift in Sources */,
 				698C576D3A6AB581E119108B /* spheres.swift in Sources */,
+				698C5A51F2A7AA734FB56772 /* intersectionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

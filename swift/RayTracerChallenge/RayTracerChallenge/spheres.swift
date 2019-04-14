@@ -8,12 +8,14 @@ import Foundation
 struct Sphere {
 }
 
+extension Sphere: Equatable {}
+
 func sphere() -> Sphere {
     return Sphere()
 }
 
 extension Ray {
-    func intersects(_ sphere: Sphere) -> [Double] {
+    func intersects(_ sphere: Sphere) -> [Intersection<Sphere>] {
         let sphereToRay = origin - point(x: 0, y: 0, z: 0)
         let a = direction.dot(direction)
         let b = 2 * direction.dot(sphereToRay)
@@ -30,9 +32,9 @@ extension Ray {
 
         // Returning tangents in increasing order
         if (t1 < t2) {
-            return [t1, t2]
+            return [intersection(t: t1, object: sphere), intersection(t: t2, object: sphere)]
         }
 
-        return [t2, t1]
+        return [intersection(t: t2, object: sphere), intersection(t: t1, object: sphere)]
     }
 }
