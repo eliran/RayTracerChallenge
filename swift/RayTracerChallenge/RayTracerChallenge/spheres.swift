@@ -27,6 +27,15 @@ extension Sphere {
     }
 }
 
+extension Sphere {
+    func normal(at position: Point) -> Vector {
+        let invertedTransform = transform.inverse
+        let objectPosition = invertedTransform * position
+        let objectNormal = objectPosition - point(x: 0, y: 0, z: 0)
+        return (invertedTransform.transposed * objectNormal).set(w: 0).normal
+    }
+}
+
 extension Ray {
     func intersects(_ sphere: Sphere) -> [Intersection<Sphere>] {
         let transformedRay = self.transform(sphere.transform.inverse)

@@ -104,4 +104,51 @@ class SpheresTests: XCTestCase {
 
         expect(xs.count) == 0
     }
+
+    func test_the_normal_on_a_sphere_at_a_point_on_the_x_axis() {
+        let s = sphere()
+        let n = s.normal(at: point(x: 1, y: 0, z: 0))
+
+        expect(n) == vector(x: 1, y: 0, z: 0)
+    }
+
+    func test_the_normal_on_a_sphere_at_a_point_on_the_y_axis() {
+        let s = sphere()
+        let n = s.normal(at: point(x: 0, y: 1, z: 0))
+
+        expect(n) == vector(x: 0, y: 1, z: 0)
+    }
+
+    func test_the_normal_on_a_sphere_at_a_point_on_the_z_axis() {
+        let s = sphere()
+        let n = s.normal(at: point(x: 0, y: 0, z: 1))
+
+        expect(n) == vector(x: 0, y: 0, z: 1)
+    }
+
+    func test_the_normal_on_a_sphere_at_a_nonaxial_point() {
+        let s = sphere()
+        let n = s.normal(at: point(x: 3.0.squareRoot()/3, y: 3.0.squareRoot()/3, z: 3.0.squareRoot()/3))
+
+        expect(n) == vector(x: 3.0.squareRoot()/3, y: 3.0.squareRoot()/3, z: 3.0.squareRoot()/3)
+    }
+
+    func test_the_normal_is_a_normalized_vector() {
+        let s = sphere()
+        let n = s.normal(at: point(x: 3.0.squareRoot()/3, y: 3.0.squareRoot()/3, z: 3.0.squareRoot()/3))
+
+        expect(n) == n.normal
+    }
+
+    func test_computing_the_normal_on_a_translated_sphere() {
+        let s = sphere().set(transform: .translation(x: 0, y: 1, z: 0))
+
+        expect(s.normal(at: point(x: 0, y: 1.70711, z: -0.70711))) ~ vector(x: 0, y: 0.70711, z: -0.70711)
+    }
+
+    func test_computing_the_normal_on_a_transformed_sphere() {
+        let s = sphere().set(transform: Matrix.rotation(z: .pi/5).scale(x: 1, y: 0.5, z: 1))
+
+        expect(s.normal(at: point(x: 0, y: 2.0.squareRoot()/2, z: -(2.0.squareRoot())/2))) ~ vector(x: 0, y: 0.97014, z: -0.24254)
+    }
 }

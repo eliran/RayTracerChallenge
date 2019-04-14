@@ -103,3 +103,9 @@ extension Double {
         return preround / multiplier
     }
 }
+
+extension Tuple {
+    func set(w: Double) -> Tuple {
+        return Tuple(x: x, y: y, z: z, w: w)
+    }
+}
