@@ -59,4 +59,26 @@ extension Matrix {
             (0,0,0,1)
         ))
     }
+
+    // Fluent API
+
+    func translate(x: Double, y: Double, z: Double) -> Matrix {
+        return Matrix.translation(x: x, y: y, z: z) * self
+    }
+
+    func scale(x: Double, y: Double, z: Double) -> Matrix {
+        return Matrix.scaling(x: x, y: y, z: z) * self
+    }
+
+    func rotate(x radians: Double) -> Matrix {
+        return Matrix.rotation(x: radians) * self
+    }
+
+    func rotate(y radians: Double) -> Matrix {
+        return Matrix.rotation(y: radians) * self
+    }
+
+    func rotate(z radians: Double) -> Matrix {
+        return Matrix.rotation(z: radians) * self
+    }
 }

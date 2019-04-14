@@ -156,4 +156,11 @@ class TransformationsTest: XCTestCase {
         let t = C * B * A
         expect(t * p) ~ point(x: 15, y: 0, z: 7)
     }
+
+    func test_fluent_transformations() {
+        let p = point(x: 1, y: 0, z: 1)
+        let t = Matrix.identity4x4.rotate(x: .pi / 2).scale(x: 5, y: 5, z: 5).translate(x: 10, y: 5, z: 7)
+
+        expect(t * p) ~ point(x: 15, y: 0, z: 7)
+    }
 }
