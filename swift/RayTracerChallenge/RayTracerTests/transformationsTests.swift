@@ -130,4 +130,30 @@ class TransformationsTest: XCTestCase {
 
         expect(t * p) == point(x: 2, y: 3, z: 7)
     }
+
+    func test_individual_transformations_are_applied_in_sequence() {
+        let p = point(x: 1, y: 0, z: 1)
+        let A = Matrix.rotation(x: .pi / 2)
+        let B = Matrix.scaling(x: 5, y: 5, z: 5)
+        let C = Matrix.translation(x: 10, y: 5, z: 7)
+
+        let p2 = A * p
+        expect(p2) ~ point(x: 1, y: -1, z: 0)
+
+        let p3 = B * p2
+        expect(p3) ~ point(x: 5, y: -5, z: 0)
+
+        let p4 = C * p3
+        expect(p4) ~ point(x: 15, y: 0, z: 7)
+    }
+
+    func test_chained_transformation_must_be_applied_in_reverse_order() {
+        let p = point(x: 1, y: 0, z: 1)
+        let A = Matrix.rotation(x: .pi / 2)
+        let B = Matrix.scaling(x: 5, y: 5, z: 5)
+        let C = Matrix.translation(x: 10, y: 5, z: 7)
+
+        let t = C * B * A
+        expect(t * p) ~ point(x: 15, y: 0, z: 7)
+    }
 }
