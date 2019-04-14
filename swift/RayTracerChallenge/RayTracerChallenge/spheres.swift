@@ -32,6 +32,12 @@ extension Sphere {
         self.material = material
         return self
     }
+
+    @discardableResult
+    func updateMaterial(_ updateBlock: (Material) -> Material) -> Sphere {
+        self.material = updateBlock(self.material)
+        return self
+    }
 }
 
 extension Sphere {
@@ -67,5 +73,31 @@ extension Ray {
         }
 
         return [intersection(t: t2, object: sphere), intersection(t: t1, object: sphere)]
+    }
+}
+
+struct IntersectionComputation<O: Equatable> {
+    let t: Double
+    let object: O
+    let point: Point
+    let eyev: Vector
+    let normalv: Vector
+    let inside: Bool
+}
+
+extension Intersection where O == Sphere {
+    func prepare(for ray: Ray) -> IntersectionComputation<O> {
+        let p = ray.position(t)
+        let n = object.normal(at: p)
+        let e = -ray.direction
+        let inside = n.dot(e) < 0
+        return IntersectionComputation(
+            t: t,
+            object: object,
+            point: p,
+            eyev: e,
+            normalv: inside ? -n : n,
+            inside: inside
+        )
     }
 }

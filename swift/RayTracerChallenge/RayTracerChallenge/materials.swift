@@ -20,3 +20,14 @@ extension Material {
 }
 
 extension Material: Equatable {}
+
+extension Material {
+    func copy(color: Color? = nil, ambient: Double? = nil, diffuse: Double? = nil, specular: Double? = nil, shininess: Double? = nil) -> Material {
+        return Material(
+            color: color ?? self.color,
+            ambient: ambient ?? self.ambient,
+            diffuse: diffuse ?? self.diffuse,
+            specular: specular ?? self.specular,
+            shininess: shininess ?? self.shininess)
+    }
+}
