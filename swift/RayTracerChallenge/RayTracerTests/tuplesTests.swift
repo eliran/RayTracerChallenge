@@ -132,7 +132,7 @@ class TuplesTest: XCTestCase {
     func test_normalizing_vector_1_2_3() {
         let v = vector(x: 1, y: 2, z: 3)
 
-        expect(v.normal.approximate(digits: 5)) == vector(x: 0.26726, y: 0.53452, z: 0.80178)
+        expect(v.normal) ~ vector(x: 0.26726, y: 0.53452, z: 0.80178)
     }
 
     func test_magnitude_of_normalized_vector() {

@@ -23,4 +23,31 @@ extension Matrix {
             (0,0,0,1)
         ))
     }
+
+    static func rotation(x radians: Double) -> Matrix {
+        return matrix4x4((
+            (1,0,0,0),
+            (0,cos(radians),-sin(radians),0),
+            (0,sin(radians), cos(radians),0),
+            (0,0,0,1)
+        ))
+    }
+
+    static func rotation(y radians: Double) -> Matrix {
+        return matrix4x4((
+            (cos(radians),0,sin(radians),0),
+            (0,1,0,0),
+            (-sin(radians),0,cos(radians),0),
+            (0,0,0,1)
+        ))
+    }
+
+    static func rotation(z radians: Double) -> Matrix {
+        return matrix4x4((
+            (cos(radians),-sin(radians),0,0),
+            (sin(radians),cos(radians),0,0),
+            (0,0,1,0),
+            (0,0,0,1)
+        ))
+    }
 }

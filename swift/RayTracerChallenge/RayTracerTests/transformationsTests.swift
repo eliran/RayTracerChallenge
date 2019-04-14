@@ -47,4 +47,45 @@ class TransformationsTest: XCTestCase {
 
         expect(t * v) == vector(x: -2, y: 2, z: 2)
     }
+
+    func test_reflection_is_scaling_by_a_negative_value() {
+        let t = Matrix.scaling(x: -1, y: 1, z: 1)
+        let p = point(x: 2, y: 3, z: 4)
+
+        expect(t * p) == point(x: -2, y: 3, z: 4)
+    }
+
+    func test_rotating_a_point_around_the_x_axis() {
+        let p = point(x: 0, y: 1, z: 0)
+        let hq = Matrix.rotation(x: .pi / 4)
+        let fq = Matrix.rotation(x: .pi / 2)
+
+        expect(hq * p) ~ point(x: 0, y: 2.0.squareRoot()/2, z: 2.0.squareRoot()/2)
+        expect(fq * p) ~ point(x: 0, y: 0, z: 1)
+    }
+
+    func test_inverse_of_x_rotation_rotates_in_the_opposite_direction() {
+        let p = point(x: 0, y: 1, z: 0)
+        let ihq = Matrix.rotation(x: .pi / 4).inverse
+
+        expect(ihq * p) ~ point(x: 0, y: 2.0.squareRoot()/2, z: -2.0.squareRoot()/2)
+    }
+
+    func test_rotation_a_point_around_the_y_axis() {
+        let p = point(x: 0, y: 0, z: 1)
+        let hq = Matrix.rotation(y: .pi / 4)
+        let fq = Matrix.rotation(y: .pi / 2)
+
+        expect(hq * p) ~ point(x: 2.0.squareRoot()/2, y: 0, z: 2.0.squareRoot()/2)
+        expect(fq * p) ~ point(x: 1, y: 0, z: 0)
+    }
+
+    func test_rotation_a_point_around_the_z_axis() {
+        let p = point(x: 0, y: 1, z: 0)
+        let hq = Matrix.rotation(z: .pi / 4)
+        let fq = Matrix.rotation(z: .pi / 2)
+
+        expect(hq * p) ~ point(x: -2.0.squareRoot()/2, y: 2.0.squareRoot()/2, z: 0)
+        expect(fq * p) ~ point(x: -1, y: 0, z: 0)
+    }
 }

@@ -76,7 +76,7 @@ extension Tuple {
     }
 }
 
-extension Tuple {
+extension Tuple: ApproximationEquals {
     func approximate(digits: Int) -> Tuple {
         let multiplier = Double.approximateMultiplier(digits: digits)
 

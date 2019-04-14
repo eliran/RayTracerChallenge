@@ -71,7 +71,7 @@ extension Matrix {
     }
 }
 
-extension Matrix: Equatable {
+extension Matrix: ApproximationEquals {
     public static func ==(lhs: Matrix, rhs: Matrix) -> Bool {
         return lhs.values == rhs.values
     }
