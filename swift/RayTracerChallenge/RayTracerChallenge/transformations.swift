@@ -50,4 +50,13 @@ extension Matrix {
             (0,0,0,1)
         ))
     }
+
+    static func shearing(xy: Double, xz: Double, yx: Double, yz: Double, zx: Double, zy: Double) -> Matrix {
+        return matrix4x4((
+            (1,xy,xz,0),
+            (yx,1,yz,0),
+            (zx,zy,1,0),
+            (0,0,0,1)
+        ))
+    }
 }

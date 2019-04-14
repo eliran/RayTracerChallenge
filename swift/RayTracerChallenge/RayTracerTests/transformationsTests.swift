@@ -88,4 +88,46 @@ class TransformationsTest: XCTestCase {
         expect(hq * p) ~ point(x: -2.0.squareRoot()/2, y: 2.0.squareRoot()/2, z: 0)
         expect(fq * p) ~ point(x: -1, y: 0, z: 0)
     }
+
+    func test_shearing_transformation_moves_x_in_proportion_to_y() {
+        let t = Matrix.shearing(xy: 1, xz: 0, yx: 0, yz: 0, zx: 0, zy: 0)
+        let p = point(x: 2, y: 3, z: 4)
+
+        expect(t * p) == point(x: 5, y: 3, z: 4)
+    }
+
+    func test_shearing_transformation_moves_x_in_proportion_to_z() {
+        let t = Matrix.shearing(xy: 0, xz: 1, yx: 0, yz: 0, zx: 0, zy: 0)
+        let p = point(x: 2, y: 3, z: 4)
+
+        expect(t * p) == point(x: 6, y: 3, z: 4)
+    }
+
+    func test_shearing_transformation_moves_y_in_proportion_to_x() {
+        let t = Matrix.shearing(xy: 0, xz: 0, yx: 1, yz: 0, zx: 0, zy: 0)
+        let p = point(x: 2, y: 3, z: 4)
+
+        expect(t * p) == point(x: 2, y: 5, z: 4)
+    }
+
+    func test_shearing_transformation_moves_y_in_proportion_to_z() {
+        let t = Matrix.shearing(xy: 0, xz: 0, yx: 0, yz: 1, zx: 0, zy: 0)
+        let p = point(x: 2, y: 3, z: 4)
+
+        expect(t * p) == point(x: 2, y: 7, z: 4)
+    }
+
+    func test_shearing_transformation_moves_z_in_proportion_to_x() {
+        let t = Matrix.shearing(xy: 0, xz: 0, yx: 0, yz: 0, zx: 1, zy: 0)
+        let p = point(x: 2, y: 3, z: 4)
+
+        expect(t * p) == point(x: 2, y: 3, z: 6)
+    }
+
+    func test_shearing_transformation_moves_z_in_proportion_to_y() {
+        let t = Matrix.shearing(xy: 0, xz: 0, yx: 0, yz: 0, zx: 0, zy: 1)
+        let p = point(x: 2, y: 3, z: 4)
+
+        expect(t * p) == point(x: 2, y: 3, z: 7)
+    }
 }
