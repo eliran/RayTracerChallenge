@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		698C5023909618611528E3EB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5B3ED23329F09BB8EB37 /* main.swift */; };
+		698C50E7A73C12BD7DF253E8 /* transformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C53BC51E35071F63828AF /* transformations.swift */; };
 		698C51DAF1B2EC62F27A6761 /* canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C546E1D4900F39B6DA927 /* canvas.swift */; };
 		698C53D525C9A49B9EE28CBA /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5F5F292E998D8F34BB92 /* colors.swift */; };
 		698C5405997A267E65BABF57 /* matrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C503DE9198A7617663B67 /* matrices.swift */; };
+		698C549EC01F405A3B3A83FF /* transformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C53BC51E35071F63828AF /* transformations.swift */; };
 		698C5545E29B790CC0B1ED5A /* colorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5667F6A2221BEC4D2E33 /* colorsTests.swift */; };
 		698C559A03A51D20B17472D3 /* tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5297301F0B7DF08C969B /* tuple.swift */; };
 		698C56EFD40E48498BC71F21 /* projectile_demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C58CEE8F7997AD2648DF2 /* projectile_demo.swift */; };
@@ -19,6 +21,7 @@
 		698C5AF4648C4F0A943DA719 /* canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C546E1D4900F39B6DA927 /* canvas.swift */; };
 		698C5B7A62E1A5D56FE24B50 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5A6EA7DF0BA5AFF331AF /* Assertions.swift */; };
 		698C5BBA2E5EA86BA8DFA006 /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5F5F292E998D8F34BB92 /* colors.swift */; };
+		698C5FBAEB15F99888019668 /* transformationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5428A4D82F6F0A31E9F7 /* transformationsTests.swift */; };
 		B7E84EDF225C416000ED7177 /* tuplesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E84EDE225C416000ED7177 /* tuplesTests.swift */; };
 		B7E84EE5225C4B6400ED7177 /* tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5297301F0B7DF08C969B /* tuple.swift */; };
 		B7E84EE7225D81FC00ED7177 /* canvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E84EE6225D81FC00ED7177 /* canvasTests.swift */; };
@@ -40,6 +43,8 @@
 		698C503DE9198A7617663B67 /* matrices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = matrices.swift; sourceTree = "<group>"; };
 		698C50A000CFCEB785256261 /* RayTracerChallenge */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracerChallenge; sourceTree = BUILT_PRODUCTS_DIR; };
 		698C5297301F0B7DF08C969B /* tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tuple.swift; sourceTree = "<group>"; };
+		698C53BC51E35071F63828AF /* transformations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = transformations.swift; sourceTree = "<group>"; };
+		698C5428A4D82F6F0A31E9F7 /* transformationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = transformationsTests.swift; sourceTree = "<group>"; };
 		698C546E1D4900F39B6DA927 /* canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = canvas.swift; sourceTree = "<group>"; };
 		698C55304DD90ED1CFCAB0A1 /* matricesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = matricesTests.swift; sourceTree = "<group>"; };
 		698C5667F6A2221BEC4D2E33 /* colorsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = colorsTests.swift; sourceTree = "<group>"; };
@@ -98,6 +103,7 @@
 				698C546E1D4900F39B6DA927 /* canvas.swift */,
 				698C5F5F292E998D8F34BB92 /* colors.swift */,
 				698C503DE9198A7617663B67 /* matrices.swift */,
+				698C53BC51E35071F63828AF /* transformations.swift */,
 			);
 			path = RayTracerChallenge;
 			sourceTree = "<group>";
@@ -111,6 +117,7 @@
 				B7E84EE6225D81FC00ED7177 /* canvasTests.swift */,
 				698C5667F6A2221BEC4D2E33 /* colorsTests.swift */,
 				698C55304DD90ED1CFCAB0A1 /* matricesTests.swift */,
+				698C5428A4D82F6F0A31E9F7 /* transformationsTests.swift */,
 			);
 			path = RayTracerTests;
 			sourceTree = "<group>";
@@ -207,6 +214,7 @@
 				698C5AF4648C4F0A943DA719 /* canvas.swift in Sources */,
 				698C53D525C9A49B9EE28CBA /* colors.swift in Sources */,
 				698C5405997A267E65BABF57 /* matrices.swift in Sources */,
+				698C50E7A73C12BD7DF253E8 /* transformations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +231,8 @@
 				698C5BBA2E5EA86BA8DFA006 /* colors.swift in Sources */,
 				698C57578A7AF830EA73720D /* matricesTests.swift in Sources */,
 				698C576CE9683BCB0F977F0D /* matrices.swift in Sources */,
+				698C5FBAEB15F99888019668 /* transformationsTests.swift in Sources */,
+				698C549EC01F405A3B3A83FF /* transformations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
