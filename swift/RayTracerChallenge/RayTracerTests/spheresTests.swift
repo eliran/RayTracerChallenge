@@ -151,4 +151,17 @@ class SpheresTests: XCTestCase {
 
         expect(s.normal(at: point(x: 0, y: 2.0.squareRoot()/2, z: -(2.0.squareRoot())/2))) ~ vector(x: 0, y: 0.97014, z: -0.24254)
     }
+
+    func test_a_sphere_has_a_default_material() {
+        let s = sphere()
+
+        expect(s.material) == Material.make()
+    }
+
+    func test_a_sphere_may_be_assigned_a_material() {
+        let m = Material.make(ambient: 1)
+        let s = sphere().set(material: m)
+
+        expect(s.material) == m
+    }
 }

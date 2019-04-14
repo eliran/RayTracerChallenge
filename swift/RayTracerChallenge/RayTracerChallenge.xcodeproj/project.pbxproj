@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		698C5023909618611528E3EB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5B3ED23329F09BB8EB37 /* main.swift */; };
+		698C5071D9626682D6E9F956 /* materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5B92DDB59BDEBBE69EA9 /* materials.swift */; };
 		698C50E7A73C12BD7DF253E8 /* transformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C53BC51E35071F63828AF /* transformations.swift */; };
 		698C51DAF1B2EC62F27A6761 /* canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C546E1D4900F39B6DA927 /* canvas.swift */; };
 		698C51FDDEDC908A797B863F /* rays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C569B583D01CEA6966641 /* rays.swift */; };
+		698C527AF27D62F80AA32849 /* materialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5EBEDC04F2231B8ECCCC /* materialsTests.swift */; };
 		698C53D3FC4CBDF2FD50109B /* spheresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5FB33720087887410797 /* spheresTests.swift */; };
 		698C53D525C9A49B9EE28CBA /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5F5F292E998D8F34BB92 /* colors.swift */; };
 		698C5405997A267E65BABF57 /* matrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C503DE9198A7617663B67 /* matrices.swift */; };
@@ -22,11 +24,15 @@
 		698C57578A7AF830EA73720D /* matricesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C55304DD90ED1CFCAB0A1 /* matricesTests.swift */; };
 		698C576CE9683BCB0F977F0D /* matrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C503DE9198A7617663B67 /* matrices.swift */; };
 		698C576D3A6AB581E119108B /* spheres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5058329B1A5161843994 /* spheres.swift */; };
+		698C58AC8FD3D4290FC07D24 /* materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5B92DDB59BDEBBE69EA9 /* materials.swift */; };
 		698C5A0885B87462DBC0A2C6 /* raysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5602F69249392D0AF1B4 /* raysTests.swift */; };
 		698C5A51F2A7AA734FB56772 /* intersectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5B886C24DB5261374FED /* intersectionsTests.swift */; };
+		698C5AE653FACE8ABF937FEB /* lights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C569134FAF07804210E1B /* lights.swift */; };
 		698C5AF4648C4F0A943DA719 /* canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C546E1D4900F39B6DA927 /* canvas.swift */; };
 		698C5B7A62E1A5D56FE24B50 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5A6EA7DF0BA5AFF331AF /* Assertions.swift */; };
 		698C5BBA2E5EA86BA8DFA006 /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5F5F292E998D8F34BB92 /* colors.swift */; };
+		698C5BF3D102B1E8A7FA9CDF /* lightsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5FECCFDA1BA955BDACCF /* lightsTests.swift */; };
+		698C5F1C4045078D5201A3FD /* lights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C569134FAF07804210E1B /* lights.swift */; };
 		698C5F295EFEE3EEA4EC829E /* rays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C569B583D01CEA6966641 /* rays.swift */; };
 		698C5FBAEB15F99888019668 /* transformationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5428A4D82F6F0A31E9F7 /* transformationsTests.swift */; };
 		B7E84EDF225C416000ED7177 /* tuplesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E84EDE225C416000ED7177 /* tuplesTests.swift */; };
@@ -57,13 +63,17 @@
 		698C55304DD90ED1CFCAB0A1 /* matricesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = matricesTests.swift; sourceTree = "<group>"; };
 		698C5602F69249392D0AF1B4 /* raysTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = raysTests.swift; sourceTree = "<group>"; };
 		698C5667F6A2221BEC4D2E33 /* colorsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = colorsTests.swift; sourceTree = "<group>"; };
+		698C569134FAF07804210E1B /* lights.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lights.swift; sourceTree = "<group>"; };
 		698C569B583D01CEA6966641 /* rays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rays.swift; sourceTree = "<group>"; };
 		698C58CEE8F7997AD2648DF2 /* projectile_demo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = projectile_demo.swift; sourceTree = "<group>"; };
 		698C5A6EA7DF0BA5AFF331AF /* Assertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
 		698C5B3ED23329F09BB8EB37 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		698C5B886C24DB5261374FED /* intersectionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = intersectionsTests.swift; sourceTree = "<group>"; };
+		698C5B92DDB59BDEBBE69EA9 /* materials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = materials.swift; sourceTree = "<group>"; };
+		698C5EBEDC04F2231B8ECCCC /* materialsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = materialsTests.swift; sourceTree = "<group>"; };
 		698C5F5F292E998D8F34BB92 /* colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
 		698C5FB33720087887410797 /* spheresTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spheresTests.swift; sourceTree = "<group>"; };
+		698C5FECCFDA1BA955BDACCF /* lightsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lightsTests.swift; sourceTree = "<group>"; };
 		B7E84EDC225C416000ED7177 /* RayTracerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RayTracerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E84EDE225C416000ED7177 /* tuplesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tuplesTests.swift; sourceTree = "<group>"; };
 		B7E84EE0225C416000ED7177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -118,6 +128,8 @@
 				698C53BC51E35071F63828AF /* transformations.swift */,
 				698C569B583D01CEA6966641 /* rays.swift */,
 				698C5058329B1A5161843994 /* spheres.swift */,
+				698C5B92DDB59BDEBBE69EA9 /* materials.swift */,
+				698C569134FAF07804210E1B /* lights.swift */,
 			);
 			path = RayTracerChallenge;
 			sourceTree = "<group>";
@@ -135,6 +147,8 @@
 				698C5602F69249392D0AF1B4 /* raysTests.swift */,
 				698C5FB33720087887410797 /* spheresTests.swift */,
 				698C5B886C24DB5261374FED /* intersectionsTests.swift */,
+				698C5FECCFDA1BA955BDACCF /* lightsTests.swift */,
+				698C5EBEDC04F2231B8ECCCC /* materialsTests.swift */,
 			);
 			path = RayTracerTests;
 			sourceTree = "<group>";
@@ -234,6 +248,8 @@
 				698C50E7A73C12BD7DF253E8 /* transformations.swift in Sources */,
 				698C51FDDEDC908A797B863F /* rays.swift in Sources */,
 				698C5577E76F329DD47F9BD7 /* spheres.swift in Sources */,
+				698C58AC8FD3D4290FC07D24 /* materials.swift in Sources */,
+				698C5F1C4045078D5201A3FD /* lights.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +273,10 @@
 				698C53D3FC4CBDF2FD50109B /* spheresTests.swift in Sources */,
 				698C576D3A6AB581E119108B /* spheres.swift in Sources */,
 				698C5A51F2A7AA734FB56772 /* intersectionsTests.swift in Sources */,
+				698C5BF3D102B1E8A7FA9CDF /* lightsTests.swift in Sources */,
+				698C527AF27D62F80AA32849 /* materialsTests.swift in Sources */,
+				698C5071D9626682D6E9F956 /* materials.swift in Sources */,
+				698C5AE653FACE8ABF937FEB /* lights.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

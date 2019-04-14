@@ -7,6 +7,7 @@ import Foundation
 
 class Sphere {
     private(set) var transform: Matrix = Matrix.identity4x4
+    private(set) var material: Material = Material.make()
 }
 
 extension Sphere: Equatable {
@@ -23,6 +24,12 @@ extension Sphere {
     @discardableResult
     func set(transform: Matrix) -> Sphere {
         self.transform = transform
+        return self
+    }
+
+    @discardableResult
+    func set(material: Material) -> Sphere {
+        self.material = material
         return self
     }
 }
