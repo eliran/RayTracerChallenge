@@ -125,9 +125,121 @@ class Chapter5Demo: Demo {
     }
 }
 
+class RayCastRenderer {
+    private var objects: [Sphere] = []
+    private var lights: [PointLight] = []
+    private let canvas: Canvas
+
+    init(width: Int, height: Int) {
+        self.canvas = Canvas(width: width, height: height)
+    }
+
+    func add(object: Sphere) {
+        self.objects.append(object)
+    }
+
+    func add(light: PointLight) {
+        self.lights.append(light)
+    }
+
+
+    func render(origin: Point = Tuple(x: 0, y: 0, z: -5, w: 1)) -> Canvas {
+        let wall_z = 10.0
+        let wall_size = 7.0
+        let pixel_size = wall_size / Double(min(canvas.width, canvas.height))
+        let half = wall_size / 2
+
+        for y in 0..<canvas.width {
+            let world_y = half - pixel_size * Double(y)
+            for x in 0..<canvas.height {
+                let world_x = -half + pixel_size * Double(x)
+                let wall_position = point(x: world_x, y: world_y, z: wall_z)
+
+                let r = ray(origin: origin, direction: (wall_position - origin).normal)
+
+                if let h = hit(objects.reduce([]) {
+                    $0 + r.intersects($1)
+                }) {
+                    let hitPoint = r.position(h.t)
+                    let hitNormal = h.object.normal(at: hitPoint)
+                    let eye = -r.direction
+
+                    let finalColor = lights.reduce(color(r: 0, g: 0, b: 0)) {
+                        $0 + h.object.material.lighting(light: $1, position: hitPoint, eye: eye, normal: hitNormal)
+                    }
+                    set(canvas: canvas, point(x: Double(x), y: Double(y), z: 0), color: finalColor)
+                }
+            }
+        }
+
+        return canvas
+    }
+}
+
+class Chapter6Demo: Demo {
+    static let name = "Ray cast a sphere with lighting"
+
+    static func invoke() -> Canvas? {
+
+        let s = sphere()
+            //.set(transform: Matrix.shearing(xy: 1, xz: 0, yx: 0, yz: 0, zx: 0, zy: 0) * Matrix.scaling(x: 0.5, y: 1, z: 1))
+            .set(material: Material.make(color: color(r: 1, g: 0.2, b: 1)))
+
+        let light = Light.point(position: point(x: 10, y: 10, z: -10), intensity: color(r: 1, g: 1, b: 1))
+
+        let origin = point(x: 0, y: 0, z: -5)
+        let wall_z = 10.0
+        let wall_size = 7.0
+        let canvas_pixels = 200
+        let pixel_size = wall_size / Double(canvas_pixels)
+        let half = wall_size / 2
+
+        let c = canvas(width: canvas_pixels, height: canvas_pixels)
+
+
+        for y in 0..<canvas_pixels {
+            let world_y = half - pixel_size * Double(y)
+            for x in 0..<canvas_pixels {
+                let world_x = -half + pixel_size * Double(x)
+
+                let wall_position = point(x: world_x, y: world_y, z: wall_z)
+
+                let r = ray(origin: origin, direction: (wall_position - origin).normal)
+
+                if let h = hit(r.intersects(s)){
+                    let hitPoint = r.position(h.t)
+                    let hitNormal = h.object.normal(at: hitPoint)
+                    let eye = -r.direction
+
+                    let color = h.object.material.lighting(light: light, position: hitPoint, eye: eye, normal: hitNormal)
+                    set(canvas: c, point(x: Double(x), y: Double(y), z: 0), color: color)
+                }
+            }
+        }
+
+        return c
+    }
+}
+
+class RayCasterDemo: Demo {
+    static let name = "Ray caster"
+
+    static func invoke() -> Canvas? {
+        let caster = RayCastRenderer(width: 200, height: 200)
+        caster.add(light: Light.point(position: point(x: 10, y: 10, z: -10), intensity: color(r: 1, g: 1, b: 1)))
+        caster.add(light: Light.point(position: point(x: 10, y: -10, z: -10), intensity: color(r: 0, g: 1, b: 0)))
+
+        caster.add(object: sphere().set(material: Material.make(color: color(r: 1, g: 0.2, b: 1))))
+        caster.add(object: sphere().set(material: Material.make(color: color(r: 0, g: 0.2, b: 1)))
+            .set(transform: .translation(x: 0.2, y: -0.2, z: 0)))
+
+        return caster.render()
+    }
+}
+
 //MatricesDemo.run(basePath: basePath)
 //Chapter4Clock.run(basePath: basePath)
 //ProjectileDemo.run(basePath: basePath)
-Chapter5Demo.run(basePath: basePath)
+RayCasterDemo.run(basePath: basePath)
 
 
