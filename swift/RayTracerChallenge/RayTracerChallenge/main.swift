@@ -8,7 +8,24 @@ func set(canvas: Canvas, _ point: Tuple, color: Color) {
     canvas[Int(point.x), canvas.height - Int(point.y)] = color
 }
 
-print("Hello, World!")
+print("Some matrices tests")
+
+print("Inverse of identity matrix: \(Matrix.identity4x4.inverse)")
+let m = matrix4x4(((1,2,3,4), (4,6,7,8), (9,9,11,12), (13,5,15,16)))
+print("M * M.inverse = \((m * m.inverse).approximate(digits: 5))")
+
+print("M.transpose.inverse = \(m.transposed.inverse)")
+print("M.inverse.transpose = \(m.inverse.transposed)")
+
+var i = Matrix.identity4x4
+let t = tuple(x: 1, y: 2, z: 3, w: 4)
+i[1, 1] = 2
+
+print("t * modified identify = \(i * t)")
+
+
+
+
 
 
 print("Starting projectile demo")
