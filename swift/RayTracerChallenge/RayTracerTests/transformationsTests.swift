@@ -163,4 +163,46 @@ class TransformationsTest: XCTestCase {
 
         expect(t * p) ~ point(x: 15, y: 0, z: 7)
     }
+
+    func test_the_transformation_matrix_for_the_default_orientation() {
+        let from = point(x: 0, y: 0, z: 0)
+        let to = point(x: 0, y: 0, z: -1)
+        let up = vector(x: 0, y: 1, z: 0)
+
+        let t = Matrix.view(from: from, to: to, up: up)
+        expect(t) == Matrix.identity4x4
+    }
+
+    func test_a_view_transformation_matrix_looking_in_positive_z_direction() {
+        let from = point(x: 0, y: 0, z: 0)
+        let to = point(x: 0, y: 0, z: 1)
+        let up = vector(x: 0, y: 1, z: 0)
+
+        let t = Matrix.view(from: from, to: to, up: up)
+        expect(t) == Matrix.scaling(x: -1, y: 1, z: -1)
+    }
+
+    func test_the_view_transformation_moves_the_world() {
+        let from = point(x: 0, y: 0, z: 8)
+        let to = point(x: 0, y: 0, z: 0)
+        let up = vector(x: 0, y: 1, z: 0)
+
+        let t = Matrix.view(from: from, to: to, up: up)
+        expect(t) ~ Matrix.translation(x: 0, y: 0, z: -8)
+    }
+
+    func test_an_arbitrary_view_transformation() {
+        let from = point(x: 1, y: 3, z: 2)
+        let to = point(x: 4, y: -2, z: 8)
+        let up = vector(x: 1, y: 1, z: 0)
+
+        let t = Matrix.view(from: from, to: to, up: up)
+
+        expect(t) ~ matrix4x4((
+            (-0.50709, 0.50709, 0.67612,-2.36643),
+            ( 0.76772, 0.60609, 0.12122,-2.82843),
+            (-0.35857, 0.59761,-0.71714, 0.00000),
+            ( 0.00000, 0.00000, 0.00000, 1.00000)
+        ))
+    }
 }

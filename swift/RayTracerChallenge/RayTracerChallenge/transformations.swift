@@ -82,3 +82,17 @@ extension Matrix {
         return Matrix.rotation(z: radians) * self
     }
 }
+
+extension Matrix {
+    static func view(from eye: Point, to point: Point, up: Vector) -> Matrix {
+        let forward = (point - eye).normal
+        let left = forward.cross(up.normal)
+        let trueUp = left.cross(forward)
+        return matrix4x4((
+            (left.x, left.y, left.z, 0),
+            (trueUp.x, trueUp.y, trueUp.z, 0),
+            (-forward.x, -forward.y, -forward.z, 0),
+            (0,0,0,1)
+        )) * translation(x: -eye.x, y: -eye.y, z: -eye.z)
+    }
+}
