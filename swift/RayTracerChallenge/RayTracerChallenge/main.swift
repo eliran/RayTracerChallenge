@@ -237,9 +237,41 @@ class RayCasterDemo: Demo {
     }
 }
 
+class Ch7Scene: Demo {
+    static let name = "Ch 7. Scene"
+
+    static func invoke() -> Canvas? {
+        let w = World()
+        let c = Camera(hsize: 400, vsize: 200, fov: .pi/3)
+            .set(transform: .view(from: point(x: 0, y: 1.5, z: -5), to: point(x: 0, y: 1, z: 0), up: vector(x: 0, y: 1, z: 0)))
+
+        let floor = sphere().set(material: .make(color: color(r: 1, g: 0.9, b: 0.9), specular: 0)).set(transform: .scaling(x: 10, y: 0.01, z: 10))
+        let leftWall = sphere().set(material: floor.material)
+            .set(transform: Matrix.scaling(x: 10, y: 0.01, z: 10).rotate(x: .pi/2).rotate(y: .pi / -4).translate(x: 0, y: 0, z: 5))
+        let rightWall = sphere().set(material: floor.material)
+            .set(transform: Matrix.scaling(x: 10, y: 0.01, z: 10).rotate(x: .pi/2).rotate(y: .pi/4).translate(x: 0, y: 0, z: 5))
+
+        let middle = sphere().set(material: .make(color: color(r: 0.1, g: 1, b: 0.5), diffuse: 0.7, specular: 0.3))
+            .set(transform: .translation(x: -0.5, y: 1, z: 0.5))
+
+        let right = sphere().set(material: .make(color: color(r: 0.5, g: 1, b: 0.1), diffuse: 0.7, specular: 0.3))
+            .set(transform: Matrix.scaling(x: 0.5, y: 0.5, z: 0.5).translate(x: 1.5, y: 0.5, z: -0.5))
+
+        let left = sphere().set(material: .make(color: color(r: 1, g: 0.8, b: 0.1), diffuse: 0.7, specular: 0.3))
+            .set(transform: Matrix.scaling(x: 0.33, y: 0.33, z: 0.33).translate(x: -1.5, y: 0.33, z: -0.75))
+
+        w.add(objects: floor, leftWall, rightWall, left, right, middle)
+            .add(light: Light.point(position: point(x: -10, y: 10, z: -10), intensity: color(r: 1, g: 1, b: 1)))
+
+        return c.render(world: w) {
+            print("[\(Int($0*100))%]")
+        }
+    }
+}
+
 //MatricesDemo.run(basePath: basePath)
 //Chapter4Clock.run(basePath: basePath)
 //ProjectileDemo.run(basePath: basePath)
-RayCasterDemo.run(basePath: basePath)
-
+//RayCasterDemo.run(basePath: basePath)
+Ch7Scene.run(basePath: basePath)
 

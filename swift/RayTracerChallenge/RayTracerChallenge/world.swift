@@ -22,6 +22,12 @@ class World {
     }
 
     @discardableResult
+    func add(objects: Sphere...) -> World {
+        self.objects.append(contentsOf: objects)
+        return self
+    }
+
+    @discardableResult
     func removeAllLights() -> World {
         self.lights.removeAll()
         return self

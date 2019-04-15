@@ -58,12 +58,14 @@ extension Camera {
 }
 
 extension Camera {
-    func render(world: World) -> Canvas {
+    func render(world: World, progress: (Double) -> Void = { _ in }) -> Canvas {
         let c = Canvas(width: Int(hsize), height: Int(vsize))
-        for y in 0..<c.width {
-            for x in 0..<c.height {
+        let totalPixels = c.width * c.height
+        for y in 0..<c.height {
+            for x in 0..<c.width {
                 c[x, y] = world.color(for: rayTo(x: Double(x), y: Double(y)))
             }
+            progress(Double((y+1)*c.width)/Double(totalPixels))
         }
         return c
     }
