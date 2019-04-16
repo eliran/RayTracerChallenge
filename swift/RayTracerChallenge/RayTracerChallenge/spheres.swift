@@ -64,8 +64,9 @@ extension Ray {
             return []
         }
 
-        let t1 = (-b - discriminant.squareRoot()) / (2*a)
-        let t2 = (-b + discriminant.squareRoot()) / (2*a)
+        let rootOfDiscriminant = discriminant.squareRoot()
+        let t1 = (-b - rootOfDiscriminant) / (2*a)
+        let t2 = (-b + rootOfDiscriminant) / (2*a)
 
         // Returning tangents in increasing order
         if (t1 < t2) {
