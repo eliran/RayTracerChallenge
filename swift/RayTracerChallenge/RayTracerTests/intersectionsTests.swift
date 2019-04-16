@@ -59,5 +59,15 @@ class IntersectionsTest: XCTestCase {
 
         expect(hit(intersections(i1, i2, i3, i4))) == i4
     }
+
+    func test_the_his_should_offset_the_point() {
+        let r = ray(origin: point(x: 0, y: 0, z: -5), direction: vector(x: 0, y: 0, z: 1))
+        let s = sphere().set(transform: .translation(x: 0, y: 0, z: 1))
+        let i = intersection(t: 5, object: s)
+        let comps = i.prepare(for: r)
+
+        expect(comps.overPoint.z) < -Double.EPSILON/2
+        expect(comps.point.z) > comps.overPoint.z
+    }
 }
 

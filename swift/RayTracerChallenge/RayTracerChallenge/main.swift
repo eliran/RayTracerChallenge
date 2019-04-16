@@ -263,8 +263,10 @@ class Ch7Scene: Demo {
         w.add(objects: floor, leftWall, rightWall, left, right, middle)
             .add(light: Light.point(position: point(x: -10, y: 10, z: -10), intensity: color(r: 1, g: 1, b: 1)))
 
+            .add(light: Light.point(position: point(x: 10, y: 10, z: -10), intensity: color(r: 1, g: 0, b: 0)))
+
         return c.render(world: w) {
-            print("[\(Int($0*100))%]")
+            print("[\(Int($0*100))%]", terminator: "\n")
         }
     }
 }

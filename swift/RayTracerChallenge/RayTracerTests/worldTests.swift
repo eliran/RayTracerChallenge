@@ -94,7 +94,7 @@ class WorldTests: XCTestCase {
 
         let c = w.shade(i.prepare(for: r))
 
-        expect(c) == color(r: 0.90498, g: 0.90498, b: 0.90498)
+        expect(c) == color(r: 0.1, g: 0.1, b: 0.1) // color(r: 0.90498, g: 0.90498, b: 0.90498)
     }
 
     func test_color_when_a_ray_misses() {
@@ -117,5 +117,45 @@ class WorldTests: XCTestCase {
         let r = ray(origin: point(x: 0, y: 0, z: 0.75), direction: vector(x: 0, y: 0, z: -1))
 
         expect(w.color(for: r)) == i.material.color
+    }
+
+    func test_there_is_no_shadow_when_nothing_is_collinear_with_point_and_light() {
+        let w = World.default()
+        let p = point(x: 0, y: 10, z: 0)
+
+        expect(w.isShadowed(point: p)) == false
+    }
+
+    func test_the_shadow_when_an_object_is_between_the_point_and_the_light() {
+        let w = World.default()
+        let p = point(x: 10, y: -10, z: 10)
+
+        expect(w.isShadowed(point: p)) == true
+    }
+
+    func test_there_is_no_shadow_when_an_object_is_behind_the_light() {
+        let w = World.default()
+        let p = point(x: -20, y: 20, z: -20)
+
+        expect(w.isShadowed(point: p)) == false
+    }
+
+    func test_there_is_no_shadow_when_an_object_is_behind_the_point() {
+        let w = World.default()
+        let p = point(x: -2, y: 2, z: -2)
+
+        expect(w.isShadowed(point: p)) == false
+    }
+
+    func test_shade_hit_is_given_an_intersection_in_shadow() {
+        let w = World().add(light: Light.point(position: point(x: 0, y: 0, z: -10), intensity: color(r: 1, g: 1, b: 1)))
+        let s1 = sphere()
+        let s2 = sphere().set(transform: .translation(x: 0, y: 0, z: 10))
+        let r = ray(origin: point(x: 0, y: 0, z: 5), direction: vector(x: 0, y: 0, z: 1))
+        let i = intersection(t: 4, object: s2)
+
+        w.add(objects: s1, s2)
+
+        expect(w.shade(i.prepare(for: r))) == color(r: 0.1, g: 0.1, b: 0.1)
     }
 }

@@ -54,7 +54,13 @@ extension Ray {
 extension World {
     func shade(_ precalcs: IntersectionComputation<Sphere>) -> Color {
         return lights.reduce(Color(r: 0, g: 0, b: 0)) {
-           $0 + precalcs.object.material.lighting(light: $1, position: precalcs.point, eye: precalcs.eyev, normal: precalcs.normalv)
+           $0 + precalcs.object.material.lighting(
+               light: $1,
+               position: precalcs.point,
+               eye: precalcs.eyev,
+               normal: precalcs.normalv,
+               inShadow: isShadowed(point: precalcs.overPoint, light: $1)
+           )
         }
     }
 
@@ -63,5 +69,20 @@ extension World {
             return shade(h.prepare(for: ray))
         }
         return Color(r: 0, g: 0, b: 0)
+    }
+
+    func isShadowed(point: Point, light: PointLight? = nil) -> Bool {
+        guard let light = light ?? self.lights.first else {
+            return false
+        }
+
+        let v = light.position - point
+        let distance = v.magnitude
+        let direction = v.normal
+
+        if let h = hit(ray(origin: point, direction: direction).intersects(self)), h.t < distance {
+            return true
+        }
+        return false
     }
 }

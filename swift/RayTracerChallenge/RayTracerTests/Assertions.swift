@@ -63,6 +63,14 @@ extension AssertExpectation where T: FloatingPoint {
     static func != (lhs: AssertExpectation<T>, rhs: T) {
         lhs.to(notEqual: rhs)
     }
+
+    static func < (lhs: AssertExpectation<T>, rhs: T) {
+        XCTAssertLessThan(lhs.value, rhs, file: lhs.file, line: lhs.line)
+    }
+
+    static func > (lhs: AssertExpectation<T>, rhs: T) {
+        XCTAssertGreaterThan(lhs.value, rhs, file: lhs.file, line: lhs.line)
+    }
 }
 
 extension Double: ApproximationEquals {

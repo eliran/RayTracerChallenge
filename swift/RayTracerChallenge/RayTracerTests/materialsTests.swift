@@ -66,4 +66,11 @@ class LightingTests: XCTestCase {
         expect(m.lighting(light: light, position: p, eye: eyev, normal: normalv)) == color(r: 0.1, g: 0.1, b: 0.1)
     }
 
+    func test_lighting_with_the_surface_in_shadow() {
+        let eyev = vector(x: 0, y: 0, z: -1)
+        let normalv = vector(x: 0, y: 0, z: -1)
+        let light = Light.point(position: point(x: 0, y: 0, z: -10), intensity: color(r: 1, g: 1, b: 1))
+
+        expect(m.lighting(light: light, position: p, eye: eyev, normal: normalv, inShadow: true)) == color(r: 0.1, g: 0.1, b: 0.1)
+    }
 }

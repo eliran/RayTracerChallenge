@@ -83,6 +83,11 @@ struct IntersectionComputation<O: Equatable> {
     let eyev: Vector
     let normalv: Vector
     let inside: Bool
+    let overPoint: Point
+}
+
+extension Double {
+    static let EPSILON = 0.0001
 }
 
 extension Intersection where O == Sphere {
@@ -91,13 +96,15 @@ extension Intersection where O == Sphere {
         let n = object.normal(at: p)
         let e = -ray.direction
         let inside = n.dot(e) < 0
+        let overPoint = p + n*Double.EPSILON
         return IntersectionComputation(
             t: t,
             object: object,
             point: p,
             eyev: e,
             normalv: inside ? -n : n,
-            inside: inside
+            inside: inside,
+            overPoint: overPoint
         )
     }
 }
