@@ -15,7 +15,10 @@ extension Demo {
         let path = "\(basePath)/\(String(describing: self)).ppm"
 
         print(name)
+        let start = Date()
         try? invoke()?.toPPM().write(toFile: path, atomically: true, encoding: .utf8)
+        let duration = -start.timeIntervalSinceNow
+        print("Rendering took: \(duration)s")
     }
 }
 
@@ -242,7 +245,7 @@ class Ch7Scene: Demo {
 
     static func invoke() -> Canvas? {
         let w = World()
-        let c = Camera(hsize: 400, vsize: 200, fov: .pi/3)
+        let c = Camera(hsize: 100, vsize: 50, fov: .pi/3)
             .set(transform: .view(from: point(x: 0, y: 1.5, z: -5), to: point(x: 0, y: 1, z: 0), up: vector(x: 0, y: 1, z: 0)))
 
         let floor = sphere().set(material: .make(color: color(r: 1, g: 0.9, b: 0.9), specular: 0)).set(transform: .scaling(x: 10, y: 0.01, z: 10))
