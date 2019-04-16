@@ -12,12 +12,13 @@ typealias Matrix4x4Type<T> = (Row4<T>, Row4<T>, Row4<T>, Row4<T>)
 typealias Matrix3x3Type<T> = (Row3<T>, Row3<T>, Row3<T>)
 typealias Matrix2x2Type<T> = (Row2<T>, Row2<T>)
 
-struct Matrix {
+final class Matrix {
     fileprivate var values: [Double]
     fileprivate let rows: Int
     fileprivate let cols: Int
+    fileprivate var _cachedInverted: Matrix?
 
-    init(rows: Int, cols: Int, values: Double...) {
+    convenience init(rows: Int, cols: Int, values: Double...) {
         self.init(rows: rows, cols: cols, values: values)
     }
 
@@ -36,6 +37,7 @@ extension Matrix {
         }
         set(newValue) {
             values[row*cols + col] = newValue
+            _cachedInverted = nil
         }
     }
 }
@@ -197,6 +199,7 @@ extension Matrix {
     }
 
     var inverse: Matrix {
+        if let cached = _cachedInverted { return cached }
         let det = determinant
         assert(det != 0)
         var values = Array<Double>(repeating: 0, count: self.values.count)
@@ -205,6 +208,8 @@ extension Matrix {
                 values[row*self.cols + col] = cofactor(col, row) / det
             }
         }
-        return Matrix(rows: self.rows, cols: self.cols, values: values)
+        let ret = Matrix(rows: self.rows, cols: self.cols, values: values)
+        _cachedInverted = ret
+        return ret
     }
 }

@@ -38,7 +38,7 @@ class MatricesDemo: Demo {
         print("M.transpose.inverse = \(m.transposed.inverse)")
         print("M.inverse.transpose = \(m.inverse.transposed)")
 
-        var i = Matrix.identity4x4
+        let i = Matrix.identity4x4
         let t = tuple(x: 1, y: 2, z: 3, w: 4)
         i[1, 1] = 2
 
@@ -245,7 +245,7 @@ class Ch7Scene: Demo {
 
     static func invoke() -> Canvas? {
         let w = World()
-        let c = Camera(hsize: 100, vsize: 50, fov: .pi/3)
+        let c = Camera(hsize: 800, vsize: 200, fov: .pi/3)
             .set(transform: .view(from: point(x: 0, y: 1.5, z: -5), to: point(x: 0, y: 1, z: 0), up: vector(x: 0, y: 1, z: 0)))
 
         let floor = sphere().set(material: .make(color: color(r: 1, g: 0.9, b: 0.9), specular: 0)).set(transform: .scaling(x: 10, y: 0.01, z: 10))
@@ -268,8 +268,17 @@ class Ch7Scene: Demo {
 
             .add(light: Light.point(position: point(x: 10, y: 10, z: -10), intensity: color(r: 1, g: 0, b: 0)))
 
+        let start = Date()
+        func toTime(_ seconds: Double) -> String {
+            guard seconds >= 0 else { return "---" }
+            return String(format: "%02d:%02d", arguments: [Int(seconds)/60, Int(seconds)%60])
+        }
+
         return c.render(world: w) {
-            print("[\(Int($0*100))%]", terminator: "\n")
+            let elapsed = -start.timeIntervalSinceNow
+            let estimated = $0 > 0 ? (elapsed / $0) : -1
+            print("[\(Int($0*100))%] \(toTime(elapsed)) ETA: \(toTime(estimated))     ", terminator: "\n")
+            fflush(__stdoutp)
         }
     }
 }
