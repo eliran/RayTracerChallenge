@@ -6,9 +6,7 @@
 import Foundation
 
 class Sphere: Renderable {
-    override func intersects(ray: Ray) -> [Intersection] {
-        let transformedRay = ray.transform(self.transform.inverse)
-
+    override func intersects(transformedRay: Ray) -> [Intersection] {
         let sphereToRay = transformedRay.origin - point(x: 0, y: 0, z: 0)
         let a = transformedRay.direction.dot(transformedRay.direction)
         let b = 2 * transformedRay.direction.dot(sphereToRay)
@@ -30,6 +28,10 @@ class Sphere: Renderable {
         }
 
         return [intersection(t: t2, object: self), intersection(t: t1, object: self)]
+    }
+
+    override func localNormal(at localPoint: Point) -> Vector {
+        return localPoint - point(x: 0, y: 0, z: 0)
     }
 }
 

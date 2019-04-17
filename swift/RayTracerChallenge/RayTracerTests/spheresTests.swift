@@ -5,6 +5,71 @@
 
 import XCTest
 
+class RenderableTests: XCTestCase {
+    func test_the_default_transformation() {
+        let s = Renderable.mock()
+        expect(s.transform) == Matrix.identity4x4
+    }
+
+    func test_assigning_a_transformation() {
+        let s = Renderable.mock().set(transform: .translation(x: 2, y: 3, z: 4))
+        expect(s.transform) == Matrix.translation(x: 2, y: 3, z: 4)
+    }
+
+    func test_default_material() {
+        let s = Renderable.mock()
+        expect(s.material) == Material.make()
+    }
+
+    func test_assigning_a_material() {
+        let s = Renderable.mock().set(material: Material.make(ambient: 1))
+        expect(s.material) == Material.make(ambient: 1)
+    }
+
+    func test_intersecting_a_scaled_share_with_a_ray() {
+        let r = ray(origin: point(x: 0, y: 0, z: -5), direction: vector(x: 0, y: 0, z: 1))
+        let s = Renderable.mock().set(transform: .scaling(x: 2, y: 2, z: 2))
+        let _ = s.intersects(ray: r)
+        expect(s.latestRay?.origin) == point(x: 0, y: 0, z: -2.5)
+        expect(s.latestRay?.direction) == vector(x: 0, y: 0, z: 0.5)
+    }
+
+    func test_intersecting_a_translated_share_with_a_ray() {
+        let r = ray(origin: point(x: 0, y: 0, z: -5), direction: vector(x: 0, y: 0, z: 1))
+        let s = Renderable.mock().set(transform: .translation(x: 5, y: 0, z: 0))
+        let _ = s.intersects(ray: r)
+        expect(s.latestRay?.origin) == point(x: -5, y: 0, z: -5)
+        expect(s.latestRay?.direction) == vector(x: 0, y: 0, z: 1)
+    }
+
+    func test_computing_the_normal_on_a_translated_shape() {
+        let s = Renderable.mock().set(transform: .translation(x: 0, y: 1, z: 0))
+        let n = s.normal(at: point(x: 0, y: 1.70711, z: -0.70711))
+        expect(n) ~ vector(x: 0, y: 0.70711, z: -0.70711)
+    }
+
+    func test_computing_the_normal_on_a_transformed_shape() {
+        let s = Renderable.mock().set(transform: Matrix.rotation(z: .pi/5).scale(x: 1, y: 0.5, z: 1))
+        let n = s.normal(at: point(x: 0, y: 2.0.squareRoot()/2, z: -(2.0.squareRoot()/2)))
+        expect(n) ~ vector(x: 0, y: 0.97014, z: -0.24254)
+    }
+}
+
+extension Renderable {
+    static func mock() -> MockRenderable {
+        return MockRenderable()
+    }
+
+    class MockRenderable: Renderable {
+        var latestRay: Ray? = nil
+
+        override func intersects(transformedRay: Ray) -> [Intersection] {
+            self.latestRay = transformedRay
+            return []
+        }
+    }
+}
+
 class SpheresTests: XCTestCase {
     func test_ray_intersects_a_sphere_at_two_points() {
         let r = ray(origin: point(x: 0, y: 0, z: -5), direction: vector(x: 0, y: 0, z: 1))

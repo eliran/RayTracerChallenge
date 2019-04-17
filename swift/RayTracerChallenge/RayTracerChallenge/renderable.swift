@@ -28,14 +28,21 @@ open class Renderable {
     }
 
     func intersects(ray: Ray) -> [Intersection] {
+        return intersects(transformedRay: ray.transform(self.transform.inverse))
+    }
+
+    func intersects(transformedRay: Ray) -> [Intersection] {
         return []
     }
 
     func normal(at position: Point) -> Vector {
         let invertedTransform = transform.inverse
-        let objectPosition = invertedTransform * position
-        let objectNormal = objectPosition - point(x: 0, y: 0, z: 0)
-        return (invertedTransform.transposed * objectNormal).set(w: 0).normal
+        let localNormal = self.localNormal(at: invertedTransform * position)
+        return (invertedTransform.transposed * localNormal).set(w: 0).normal
+    }
+
+    func localNormal(at localPoint: Point) -> Vector {
+        return vector(x: localPoint.x, y: localPoint.y, z: localPoint.z)
     }
 }
 
