@@ -31,7 +31,7 @@ class IntersectionsTest: XCTestCase {
         let i1 = intersection(t: 1, object: s)
         let i2 = intersection(t: 2, object: s)
 
-        expect(hit(intersections(i1, i2))) == i1
+        expect(intersections(i1, i2).hit) == i1
     }
 
     func test_the_hit_when_some_intersections_have_negative_t() {
@@ -39,7 +39,7 @@ class IntersectionsTest: XCTestCase {
         let i1 = intersection(t: -1, object: s)
         let i2 = intersection(t: 1, object: s)
 
-        expect(hit(intersections(i1, i2))) == i2
+        expect(intersections(i1, i2).hit) == i2
     }
 
     func test_the_hit_when_all_intersections_have_negagive_t() {
@@ -47,7 +47,7 @@ class IntersectionsTest: XCTestCase {
         let i1 = intersection(t: -2, object: s)
         let i2 = intersection(t: -1, object: s)
 
-        expect(hit(intersections(i1, i2))) == nil
+        expect(intersections(i1, i2).hit) == nil
     }
 
     func test_the_hit_is_always_the_lowest_nonnegative_intersection() {
@@ -57,7 +57,7 @@ class IntersectionsTest: XCTestCase {
         let i3 = intersection(t: -3, object: s)
         let i4 = intersection(t: 2, object: s)
 
-        expect(hit(intersections(i1, i2, i3, i4))) == i4
+        expect(intersections(i1, i2, i3, i4).hit) == i4
     }
 
     func test_the_his_should_offset_the_point() {

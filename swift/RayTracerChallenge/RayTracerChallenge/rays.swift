@@ -10,9 +10,9 @@ struct Ray {
     let direction: Vector
 }
 
-struct Intersection<O: Equatable> {
+struct Intersection {
     let t: Double
-    let object: O
+    let object: Renderable
 }
 
 func ray(origin: Point, direction: Vector) -> Ray {
@@ -20,11 +20,11 @@ func ray(origin: Point, direction: Vector) -> Ray {
 }
 
 
-func intersection<O>(t: Double, object: O) -> Intersection<O> {
+func intersection(t: Double, object: Renderable) -> Intersection {
     return Intersection(t: t, object: object)
 }
 
-func intersections<O>(_ intersections: Intersection<O>...) -> [Intersection<O>] {
+func intersections(_ intersections: Intersection...) -> [Intersection] {
     return intersections
 }
 
@@ -32,24 +32,32 @@ extension Ray {
     func position(_ t: Double) -> Point {
         return origin + direction * t
     }
-}
 
-extension Ray {
     func transform(_ matrix: Matrix) -> Ray {
         return Ray(origin: matrix * origin, direction: matrix * direction)
+    }
+
+    func intersects(_ object: Renderable) -> [Intersection] {
+        return object.intersects(ray: self)
     }
 }
 
 extension Intersection: Equatable {}
 
-func hit<O>(_ intersections: [Intersection<O>]) -> Intersection<O>? {
-    var bestIntersection: Intersection<O>? = nil
-    for i in intersections where i.t >= 0 {
-        if bestIntersection == nil {
-            bestIntersection = i
-        } else if let best = bestIntersection, best.t > i.t {
-            bestIntersection = i
+extension Sequence where Element == Intersection {
+    var hit: Intersection? {
+        var bestIntersection: Intersection? = nil
+        for i in self where i.t >= 0 {
+            if bestIntersection == nil {
+                bestIntersection = i
+            } else if let best = bestIntersection, best.t > i.t {
+                bestIntersection = i
+            }
         }
+        return bestIntersection
     }
-    return bestIntersection
+}
+
+func hit(_ intersections: [Intersection]) -> Intersection? {
+    return intersections.hit
 }

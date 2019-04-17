@@ -29,6 +29,7 @@
 		698C576D3A6AB581E119108B /* spheres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5058329B1A5161843994 /* spheres.swift */; };
 		698C584D181DDC4BB7945D74 /* world.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C55C98E568EA7BCC633DE /* world.swift */; };
 		698C58AC8FD3D4290FC07D24 /* materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5B92DDB59BDEBBE69EA9 /* materials.swift */; };
+		698C59D38D4F431A16A28F5C /* renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5490B298F14F6105ED24 /* renderable.swift */; };
 		698C5A0885B87462DBC0A2C6 /* raysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5602F69249392D0AF1B4 /* raysTests.swift */; };
 		698C5A51F2A7AA734FB56772 /* intersectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5B886C24DB5261374FED /* intersectionsTests.swift */; };
 		698C5AE653FACE8ABF937FEB /* lights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C569134FAF07804210E1B /* lights.swift */; };
@@ -36,6 +37,7 @@
 		698C5B7A62E1A5D56FE24B50 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5A6EA7DF0BA5AFF331AF /* Assertions.swift */; };
 		698C5BBA2E5EA86BA8DFA006 /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5F5F292E998D8F34BB92 /* colors.swift */; };
 		698C5BF3D102B1E8A7FA9CDF /* lightsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5FECCFDA1BA955BDACCF /* lightsTests.swift */; };
+		698C5D9EC0E932EC67DB0C34 /* renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5490B298F14F6105ED24 /* renderable.swift */; };
 		698C5EB0C8EBEB056EC25297 /* camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C51082B831F136E81B61E /* camera.swift */; };
 		698C5F1C4045078D5201A3FD /* lights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C569134FAF07804210E1B /* lights.swift */; };
 		698C5F295EFEE3EEA4EC829E /* rays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C569B583D01CEA6966641 /* rays.swift */; };
@@ -68,6 +70,7 @@
 		698C53BC51E35071F63828AF /* transformations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = transformations.swift; sourceTree = "<group>"; };
 		698C5428A4D82F6F0A31E9F7 /* transformationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = transformationsTests.swift; sourceTree = "<group>"; };
 		698C546E1D4900F39B6DA927 /* canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = canvas.swift; sourceTree = "<group>"; };
+		698C5490B298F14F6105ED24 /* renderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = renderable.swift; sourceTree = "<group>"; };
 		698C55304DD90ED1CFCAB0A1 /* matricesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = matricesTests.swift; sourceTree = "<group>"; };
 		698C55C98E568EA7BCC633DE /* world.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = world.swift; sourceTree = "<group>"; };
 		698C5602F69249392D0AF1B4 /* raysTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = raysTests.swift; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 				698C569134FAF07804210E1B /* lights.swift */,
 				698C55C98E568EA7BCC633DE /* world.swift */,
 				698C51082B831F136E81B61E /* camera.swift */,
+				698C5490B298F14F6105ED24 /* renderable.swift */,
 			);
 			path = RayTracerChallenge;
 			sourceTree = "<group>";
@@ -266,6 +270,7 @@
 				698C5F1C4045078D5201A3FD /* lights.swift in Sources */,
 				698C51F69366593FB8D30AEE /* world.swift in Sources */,
 				698C55EF5FC821534EF5DF91 /* camera.swift in Sources */,
+				698C5D9EC0E932EC67DB0C34 /* renderable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +302,7 @@
 				698C584D181DDC4BB7945D74 /* world.swift in Sources */,
 				698C5F5BC94A14A90AEF5C13 /* cameraTests.swift in Sources */,
 				698C5EB0C8EBEB056EC25297 /* camera.swift in Sources */,
+				698C59D38D4F431A16A28F5C /* renderable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

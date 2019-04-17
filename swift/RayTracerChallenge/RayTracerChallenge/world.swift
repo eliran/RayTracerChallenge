@@ -46,13 +46,13 @@ extension World {
 }
 
 extension Ray {
-    func intersects(_ world: World) -> [Intersection<Sphere>] {
+    func intersects(_ world: World) -> [Intersection] {
         return world.objects.reduce([]) { $0 + self.intersects($1) }.sorted { $0.t < $1.t }
     }
 }
 
 extension World {
-    func shade(_ precalcs: IntersectionComputation<Sphere>) -> Color {
+    func shade(_ precalcs: IntersectionComputation) -> Color {
         return lights.reduce(Color(r: 0, g: 0, b: 0)) {
            $0 + precalcs.object.material.lighting(
                light: $1,
@@ -65,7 +65,7 @@ extension World {
     }
 
     func color(for ray: Ray) -> Color {
-        if let h = hit(ray.intersects(self)) {
+        if let h = ray.intersects(self).hit {
             return shade(h.prepare(for: ray))
         }
         return Color(r: 0, g: 0, b: 0)
@@ -80,7 +80,7 @@ extension World {
         let distance = v.magnitude
         let direction = v.normal
 
-        if let h = hit(ray(origin: point, direction: direction).intersects(self)), h.t < distance {
+        if let h = ray(origin: point, direction: direction).intersects(self).hit, h.t < distance {
             return true
         }
         return false

@@ -118,7 +118,7 @@ class Chapter5Demo: Demo {
 
                 let r = ray(origin: origin, direction: (wall_position - origin).normal)
 
-                if hit(r.intersects(s)) != nil {
+                if r.intersects(s).hit != nil {
                     set(canvas: c, point(x: Double(x), y: Double(y), z: 0), color: color(r: 1, g: 0, b: 1))
                 }
             }
@@ -160,9 +160,7 @@ class RayCastRenderer {
 
                 let r = ray(origin: origin, direction: (wall_position - origin).normal)
 
-                if let h = hit(objects.reduce([]) {
-                    $0 + r.intersects($1)
-                }) {
+                if let h = hit(objects.reduce([]) { $0 + r.intersects($1) }) {
                     let hitPoint = r.position(h.t)
                     let hitNormal = h.object.normal(at: hitPoint)
                     let eye = -r.direction
@@ -209,7 +207,7 @@ class Chapter6Demo: Demo {
 
                 let r = ray(origin: origin, direction: (wall_position - origin).normal)
 
-                if let h = hit(r.intersects(s)){
+                if let h = r.intersects(s).hit {
                     let hitPoint = r.position(h.t)
                     let hitNormal = h.object.normal(at: hitPoint)
                     let eye = -r.direction
@@ -245,7 +243,7 @@ class Ch7Scene: Demo {
 
     static func invoke() -> Canvas? {
         let w = World()
-        let c = Camera(hsize: 800, vsize: 200, fov: .pi/3)
+        let c = Camera(hsize: 1600, vsize: 800, fov: .pi/3)
             .set(transform: .view(from: point(x: 0, y: 1.5, z: -5), to: point(x: 0, y: 1, z: 0), up: vector(x: 0, y: 1, z: 0)))
 
         let floor = sphere().set(material: .make(color: color(r: 1, g: 0.9, b: 0.9), specular: 0)).set(transform: .scaling(x: 10, y: 0.01, z: 10))
@@ -266,7 +264,7 @@ class Ch7Scene: Demo {
         w.add(objects: floor, leftWall, rightWall, left, right, middle)
             .add(light: Light.point(position: point(x: -10, y: 10, z: -10), intensity: color(r: 1, g: 1, b: 1)))
 
-            .add(light: Light.point(position: point(x: 10, y: 10, z: -10), intensity: color(r: 1, g: 0, b: 0)))
+//            .add(light: Light.point(position: point(x: 10, y: 10, z: -10), intensity: color(r: 1, g: 0, b: 0)))
 
         let start = Date()
         func toTime(_ seconds: Double) -> String {
