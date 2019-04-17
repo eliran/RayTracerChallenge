@@ -135,21 +135,6 @@ class SpheresTests: XCTestCase {
         expect(xs[1].object) == s
     }
 
-    func test_sphere_default_transformation() {
-        let s = sphere()
-
-        expect(s.transform) == Matrix.identity4x4
-    }
-
-    func test_updating_sphere_transform() {
-        let s = sphere()
-        let t = Matrix.translation(x: 2, y: 3, z: 4)
-
-        s.set(transform: t)
-
-        expect(s.transform) == t
-    }
-
     func test_intersecting_a_scaled_sphere_with_a_ray() {
         let r = ray(origin: point(x: 0, y: 0, z: -5), direction: vector(x: 0, y: 0, z: 1))
         let s = sphere().set(transform: .scaling(x: 2, y: 2, z: 2))
@@ -215,18 +200,5 @@ class SpheresTests: XCTestCase {
         let s = sphere().set(transform: Matrix.rotation(z: .pi/5).scale(x: 1, y: 0.5, z: 1))
 
         expect(s.normal(at: point(x: 0, y: 2.0.squareRoot()/2, z: -(2.0.squareRoot())/2))) ~ vector(x: 0, y: 0.97014, z: -0.24254)
-    }
-
-    func test_a_sphere_has_a_default_material() {
-        let s = sphere()
-
-        expect(s.material) == Material.make()
-    }
-
-    func test_a_sphere_may_be_assigned_a_material() {
-        let m = Material.make(ambient: 1)
-        let s = sphere().set(material: m)
-
-        expect(s.material) == m
     }
 }
