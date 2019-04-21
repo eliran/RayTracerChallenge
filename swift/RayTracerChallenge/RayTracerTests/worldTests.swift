@@ -17,8 +17,8 @@ class WorldTests: XCTestCase {
         let w = World.default()
 
         let light = Light.point(position: point(x: -10, y: 10, z: -10), intensity: color(r: 1, g: 1, b: 1))
-        let s1 = sphere().set(material: .make(color: color(r: 0.8, g: 1.0, b: 0.6), diffuse: 0.7, specular: 0.2))
-        let s2 = sphere().set(transform: .scaling(x: 0.5, y: 0.5, z: 0.5))
+        let s1 = Shapes.sphere().set(material: .make(color: color(r: 0.8, g: 1.0, b: 0.6), diffuse: 0.7, specular: 0.2))
+        let s2 = Shapes.sphere().set(transform: .scaling(x: 0.5, y: 0.5, z: 0.5))
 
         expect(w.lights.first) == light
         expect(w.objects).contains(s1)
@@ -40,7 +40,7 @@ class WorldTests: XCTestCase {
 
     func test_precomputing_the_state_of_an_intersection() {
         let r = ray(origin: point(x: 0, y: 0, z: -5), direction: vector(x: 0, y: 0, z: 1))
-        let s = sphere()
+        let s = Shapes.sphere()
         let i = intersection(t: 4, object: s)
 
         let c = i.prepare(for: r)
@@ -54,7 +54,7 @@ class WorldTests: XCTestCase {
 
     func test_the_hit_when_an_intersection_occurs_on_the_outside() {
         let r = ray(origin: point(x: 0, y: 0, z: -5), direction: vector(x: 0, y: 0, z: 1))
-        let s = sphere()
+        let s = Shapes.sphere()
         let i = intersection(t: 4, object: s)
 
         let c = i.prepare(for: r)
@@ -64,7 +64,7 @@ class WorldTests: XCTestCase {
 
     func test_the_his_when_an_intersection_occurs_on_the_inside() {
         let r = ray(origin: point(x: 0, y: 0, z: 0), direction: vector(x: 0, y: 0, z: 1))
-        let s = sphere()
+        let s = Shapes.sphere()
         let i = intersection(t: 1, object: s)
 
         let c = i.prepare(for: r)
@@ -149,8 +149,8 @@ class WorldTests: XCTestCase {
 
     func test_shade_hit_is_given_an_intersection_in_shadow() {
         let w = World().add(light: Light.point(position: point(x: 0, y: 0, z: -10), intensity: color(r: 1, g: 1, b: 1)))
-        let s1 = sphere()
-        let s2 = sphere().set(transform: .translation(x: 0, y: 0, z: 10))
+        let s1 = Shapes.sphere()
+        let s2 = Shapes.sphere().set(transform: .translation(x: 0, y: 0, z: 10))
         let r = ray(origin: point(x: 0, y: 0, z: 5), direction: vector(x: 0, y: 0, z: 1))
         let i = intersection(t: 4, object: s2)
 

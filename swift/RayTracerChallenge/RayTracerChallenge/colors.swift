@@ -17,6 +17,12 @@ extension Double {
     }
 }
 
+extension Color: ColorByPosition {
+  func at(_ point: Point) -> Color {
+    return self
+  }
+}
+
 func color(r: Double, g: Double, b: Double) -> Color {
     return Color(r: r, g: g, b: b)
 }

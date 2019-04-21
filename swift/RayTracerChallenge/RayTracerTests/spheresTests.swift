@@ -73,7 +73,7 @@ extension Renderable {
 class SpheresTests: XCTestCase {
     func test_ray_intersects_a_sphere_at_two_points() {
         let r = ray(origin: point(x: 0, y: 0, z: -5), direction: vector(x: 0, y: 0, z: 1))
-        let s = sphere()
+        let s = Shapes.sphere()
 
         let xs = r.intersects(s)
 
@@ -84,7 +84,7 @@ class SpheresTests: XCTestCase {
 
     func test_ray_intersects_a_sphere_at_a_tangent() {
         let r = ray(origin: point(x: 0, y: 1, z: -5), direction: vector(x: 0, y: 0, z: 1))
-        let s = sphere()
+        let s = Shapes.sphere()
 
         let xs = r.intersects(s)
 
@@ -95,7 +95,7 @@ class SpheresTests: XCTestCase {
 
     func test_ray_misses_a_sphere() {
         let r = ray(origin: point(x: 0, y: 2, z: -5), direction: vector(x: 0, y: 0, z: 1))
-        let s = sphere()
+        let s = Shapes.sphere()
 
         let xs = r.intersects(s)
 
@@ -104,7 +104,7 @@ class SpheresTests: XCTestCase {
 
     func test_ray_originates_inside_a_sphere() {
         let r = ray(origin: point(x: 0, y: 0, z: 0), direction: vector(x: 0, y: 0, z: 1))
-        let s = sphere()
+        let s = Shapes.sphere()
 
         let xs = r.intersects(s)
 
@@ -115,7 +115,7 @@ class SpheresTests: XCTestCase {
 
     func test_a_sphere_is_behind_a_ray() {
         let r = ray(origin: point(x: 0, y: 0, z: 5), direction: vector(x: 0, y: 0, z: 1))
-        let s = sphere()
+        let s = Shapes.sphere()
 
         let xs = r.intersects(s)
 
@@ -126,7 +126,7 @@ class SpheresTests: XCTestCase {
 
     func test_intersects_set_the_object_on_the_intersection() {
         let r = ray(origin: point(x: 0, y: 0, z: -5), direction: vector(x: 0, y: 0, z: 1))
-        let s = sphere()
+        let s = Shapes.sphere()
 
         let xs = r.intersects(s)
 
@@ -137,7 +137,7 @@ class SpheresTests: XCTestCase {
 
     func test_intersecting_a_scaled_sphere_with_a_ray() {
         let r = ray(origin: point(x: 0, y: 0, z: -5), direction: vector(x: 0, y: 0, z: 1))
-        let s = sphere().set(transform: .scaling(x: 2, y: 2, z: 2))
+        let s = Shapes.sphere().set(transform: .scaling(x: 2, y: 2, z: 2))
 
         let xs = r.intersects(s)
 
@@ -148,7 +148,7 @@ class SpheresTests: XCTestCase {
 
     func test_intersecting_a_translated_sphere_with_a_ray() {
         let r = ray(origin: point(x: 0, y: 0, z: -5), direction: vector(x: 0, y: 0, z: 1))
-        let s = sphere().set(transform: .translation(x: 5, y: 0, z: 0))
+        let s = Shapes.sphere().set(transform: .translation(x: 5, y: 0, z: 0))
 
         let xs = r.intersects(s)
 
@@ -156,48 +156,48 @@ class SpheresTests: XCTestCase {
     }
 
     func test_the_normal_on_a_sphere_at_a_point_on_the_x_axis() {
-        let s = sphere()
+        let s = Shapes.sphere()
         let n = s.normal(at: point(x: 1, y: 0, z: 0))
 
         expect(n) == vector(x: 1, y: 0, z: 0)
     }
 
     func test_the_normal_on_a_sphere_at_a_point_on_the_y_axis() {
-        let s = sphere()
+        let s = Shapes.sphere()
         let n = s.normal(at: point(x: 0, y: 1, z: 0))
 
         expect(n) == vector(x: 0, y: 1, z: 0)
     }
 
     func test_the_normal_on_a_sphere_at_a_point_on_the_z_axis() {
-        let s = sphere()
+        let s = Shapes.sphere()
         let n = s.normal(at: point(x: 0, y: 0, z: 1))
 
         expect(n) == vector(x: 0, y: 0, z: 1)
     }
 
     func test_the_normal_on_a_sphere_at_a_nonaxial_point() {
-        let s = sphere()
+        let s = Shapes.sphere()
         let n = s.normal(at: point(x: 3.0.squareRoot()/3, y: 3.0.squareRoot()/3, z: 3.0.squareRoot()/3))
 
         expect(n) == vector(x: 3.0.squareRoot()/3, y: 3.0.squareRoot()/3, z: 3.0.squareRoot()/3)
     }
 
     func test_the_normal_is_a_normalized_vector() {
-        let s = sphere()
+        let s = Shapes.sphere()
         let n = s.normal(at: point(x: 3.0.squareRoot()/3, y: 3.0.squareRoot()/3, z: 3.0.squareRoot()/3))
 
         expect(n) == n.normal
     }
 
     func test_computing_the_normal_on_a_translated_sphere() {
-        let s = sphere().set(transform: .translation(x: 0, y: 1, z: 0))
+        let s = Shapes.sphere().set(transform: .translation(x: 0, y: 1, z: 0))
 
         expect(s.normal(at: point(x: 0, y: 1.70711, z: -0.70711))) ~ vector(x: 0, y: 0.70711, z: -0.70711)
     }
 
     func test_computing_the_normal_on_a_transformed_sphere() {
-        let s = sphere().set(transform: Matrix.rotation(z: .pi/5).scale(x: 1, y: 0.5, z: 1))
+        let s = Shapes.sphere().set(transform: Matrix.rotation(z: .pi/5).scale(x: 1, y: 0.5, z: 1))
 
         expect(s.normal(at: point(x: 0, y: 2.0.squareRoot()/2, z: -(2.0.squareRoot())/2))) ~ vector(x: 0, y: 0.97014, z: -0.24254)
     }

@@ -98,7 +98,7 @@ class Chapter5Demo: Demo {
 
     static func invoke() -> Canvas? {
 
-        let s = sphere().set(transform: Matrix.shearing(xy: 1, xz: 0, yx: 0, yz: 0, zx: 0, zy: 0) * Matrix.scaling(x: 0.5, y: 1, z: 1))
+        let s = Shapes.sphere().set(transform: Matrix.shearing(xy: 1, xz: 0, yx: 0, yz: 0, zx: 0, zy: 0) * Matrix.scaling(x: 0.5, y: 1, z: 1))
 
         let origin = point(x: 0, y: 0, z: -5)
         let wall_z = 10.0
@@ -182,7 +182,7 @@ class Chapter6Demo: Demo {
 
     static func invoke() -> Canvas? {
 
-        let s = sphere()
+        let s = Shapes.sphere()
             //.set(transform: Matrix.shearing(xy: 1, xz: 0, yx: 0, yz: 0, zx: 0, zy: 0) * Matrix.scaling(x: 0.5, y: 1, z: 1))
             .set(material: Material.make(color: color(r: 1, g: 0.2, b: 1)))
 
@@ -230,8 +230,8 @@ class RayCasterDemo: Demo {
         caster.add(light: Light.point(position: point(x: 10, y: 10, z: -10), intensity: color(r: 1, g: 1, b: 1)))
         caster.add(light: Light.point(position: point(x: 10, y: -10, z: -10), intensity: color(r: 0, g: 1, b: 0)))
 
-        caster.add(object: sphere().set(material: Material.make(color: color(r: 1, g: 0.2, b: 1))))
-        caster.add(object: sphere().set(material: Material.make(color: color(r: 0, g: 0.2, b: 1)))
+        caster.add(object: Shapes.sphere().set(material: Material.make(color: color(r: 1, g: 0.2, b: 1))))
+        caster.add(object: Shapes.sphere().set(material: Material.make(color: color(r: 0, g: 0.2, b: 1)))
             .set(transform: .translation(x: 0.2, y: -0.2, z: 0)))
 
         return caster.render()
@@ -243,22 +243,22 @@ class Ch7Scene: Demo {
 
     static func invoke() -> Canvas? {
         let w = World()
-        let c = Camera(hsize: 1600, vsize: 800, fov: .pi/3)
+        let c = Camera(hsize: 400, vsize: 200, fov: .pi/3)
             .set(transform: .view(from: point(x: 0, y: 1.5, z: -5), to: point(x: 0, y: 1, z: 0), up: vector(x: 0, y: 1, z: 0)))
 
-        let floor = sphere().set(material: .make(color: color(r: 1, g: 0.9, b: 0.9), specular: 0)).set(transform: .scaling(x: 10, y: 0.01, z: 10))
-        let leftWall = sphere().set(material: floor.material)
+        let floor = Shapes.sphere().set(material: .make(color: color(r: 1, g: 0.9, b: 0.9), specular: 0)).set(transform: .scaling(x: 10, y: 0.01, z: 10))
+        let leftWall = Shapes.sphere().set(material: floor.material)
             .set(transform: Matrix.scaling(x: 10, y: 0.01, z: 10).rotate(x: .pi/2).rotate(y: .pi / -4).translate(x: 0, y: 0, z: 5))
-        let rightWall = sphere().set(material: floor.material)
+        let rightWall = Shapes.sphere().set(material: floor.material)
             .set(transform: Matrix.scaling(x: 10, y: 0.01, z: 10).rotate(x: .pi/2).rotate(y: .pi/4).translate(x: 0, y: 0, z: 5))
 
-        let middle = sphere().set(material: .make(color: color(r: 0.1, g: 1, b: 0.5), diffuse: 0.7, specular: 0.3))
+        let middle = Shapes.sphere().set(material: .make(color: color(r: 0.1, g: 1, b: 0.5), diffuse: 0.7, specular: 0.3))
             .set(transform: .translation(x: -0.5, y: 1, z: 0.5))
 
-        let right = sphere().set(material: .make(color: color(r: 0.5, g: 1, b: 0.1), diffuse: 0.7, specular: 0.3))
+        let right = Shapes.sphere().set(material: .make(color: color(r: 0.5, g: 1, b: 0.1), diffuse: 0.7, specular: 0.3))
             .set(transform: Matrix.scaling(x: 0.5, y: 0.5, z: 0.5).translate(x: 1.5, y: 0.5, z: -0.5))
 
-        let left = sphere().set(material: .make(color: color(r: 1, g: 0.8, b: 0.1), diffuse: 0.7, specular: 0.3))
+        let left = Shapes.sphere().set(material: .make(color: color(r: 1, g: 0.8, b: 0.1), diffuse: 0.7, specular: 0.3))
             .set(transform: Matrix.scaling(x: 0.33, y: 0.33, z: 0.33).translate(x: -1.5, y: 0.33, z: -0.75))
 
         w.add(objects: floor, leftWall, rightWall, left, right, middle)
@@ -281,9 +281,55 @@ class Ch7Scene: Demo {
     }
 }
 
+class Ch9Scene: Demo {
+  static let name = "Ch 9. Plane"
+
+  static func invoke() -> Canvas? {
+    let w = World()
+    let c = Camera(hsize: 400, vsize: 200, fov: .pi/3)
+      .set(transform: .view(from: point(x: 0, y: 1.5, z: -5), to: point(x: 0, y: 1, z: 0), up: vector(x: 0, y: 1, z: 0)))
+
+    let floor = Shapes.plane().set(material: .make(color: color(r: 1, g: 0.9, b: 0.9), specular: 0)).set(transform: .scaling(x: 10, y: 0.01, z: 10))
+//    let leftWall = Shapes.sphere().set(material: floor.material)
+//      .set(transform: Matrix.scaling(x: 10, y: 0.01, z: 10).rotate(x: .pi/2).rotate(y: .pi / -4).translate(x: 0, y: 0, z: 5))
+//    let rightWall = Shapes.sphere().set(material: floor.material)
+//      .set(transform: Matrix.scaling(x: 10, y: 0.01, z: 10).rotate(x: .pi/2).rotate(y: .pi/4).translate(x: 0, y: 0, z: 5))
+
+    let other = Shapes.plane().set(material: .make(color: color(r: 1, g: 0, b: 0))).set(transform: .rotation(x: -.pi/4))
+
+    let middle = Shapes.sphere().set(material: .make(color: color(r: 0.1, g: 1, b: 0.5), diffuse: 0.7, specular: 0.3))
+      .set(transform: .translation(x: -0.5, y: 1, z: 0.5))
+
+    let right = Shapes.sphere().set(material: .make(color: color(r: 0.5, g: 1, b: 0.1), diffuse: 0.7, specular: 0.3))
+      .set(transform: Matrix.scaling(x: 0.5, y: 0.5, z: 0.5).translate(x: 1.5, y: 0.5, z: -0.5))
+
+    let left = Shapes.sphere().set(material: .make(color: color(r: 1, g: 0.8, b: 0.1), diffuse: 0.7, specular: 0.3))
+      .set(transform: Matrix.scaling(x: 0.33, y: 0.33, z: 0.33).translate(x: -1.5, y: 0.33, z: -0.75))
+
+    w.add(objects: floor, left, right, middle, other)
+      .add(light: Light.point(position: point(x: -10, y: 10, z: -10), intensity: color(r: 1, g: 1, b: 1)))
+
+    //            .add(light: Light.point(position: point(x: 10, y: 10, z: -10), intensity: color(r: 1, g: 0, b: 0)))
+
+    let start = Date()
+    func toTime(_ seconds: Double) -> String {
+      guard seconds >= 0 else { return "---" }
+      return String(format: "%02d:%02d", arguments: [Int(seconds)/60, Int(seconds)%60])
+    }
+
+    return c.render(world: w) {
+      let elapsed = -start.timeIntervalSinceNow
+      let estimated = $0 > 0 ? (elapsed / $0) : -1
+      print("[\(Int($0*100))%] \(toTime(elapsed)) ETA: \(toTime(estimated))     ", terminator: "\n")
+      fflush(__stdoutp)
+    }
+  }
+}
+
 //MatricesDemo.run(basePath: basePath)
 //Chapter4Clock.run(basePath: basePath)
 //ProjectileDemo.run(basePath: basePath)
 //RayCasterDemo.run(basePath: basePath)
-Ch7Scene.run(basePath: basePath)
+//Ch7Scene.run(basePath: basePath)
+Ch9Scene.run(basePath: basePath)
 

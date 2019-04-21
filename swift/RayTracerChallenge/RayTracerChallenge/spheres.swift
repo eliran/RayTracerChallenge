@@ -35,6 +35,8 @@ class Sphere: Renderable {
     }
 }
 
-func sphere() -> Sphere {
-    return Sphere()
+extension Shapes {
+    static func sphere() -> Sphere {
+        return Sphere()
+    }
 }

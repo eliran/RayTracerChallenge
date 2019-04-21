@@ -5,6 +5,8 @@
 
 import Foundation
 
+enum Shapes {}
+
 open class Renderable {
     private(set) var transform: Matrix = Matrix.identity4x4
     private(set) var material: Material = Material.make()

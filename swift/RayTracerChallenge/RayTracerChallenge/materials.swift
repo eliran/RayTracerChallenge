@@ -5,6 +5,10 @@
 
 import Foundation
 
+protocol ColorByPosition {
+  func at(_ point: Point) -> Color
+}
+
 struct Material {
     let color: Color
     let ambient: Double

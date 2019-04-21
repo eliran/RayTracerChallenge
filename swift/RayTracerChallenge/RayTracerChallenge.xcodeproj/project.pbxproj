@@ -15,11 +15,13 @@
 		698C51F69366593FB8D30AEE /* world.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C55C98E568EA7BCC633DE /* world.swift */; };
 		698C51FDDEDC908A797B863F /* rays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C569B583D01CEA6966641 /* rays.swift */; };
 		698C527AF27D62F80AA32849 /* materialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5EBEDC04F2231B8ECCCC /* materialsTests.swift */; };
+		698C532BB93B73B72AF70BB3 /* planesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5AAF9A230E8836900CEC /* planesTests.swift */; };
 		698C53D3FC4CBDF2FD50109B /* spheresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5FB33720087887410797 /* spheresTests.swift */; };
 		698C53D525C9A49B9EE28CBA /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5F5F292E998D8F34BB92 /* colors.swift */; };
 		698C5405997A267E65BABF57 /* matrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C503DE9198A7617663B67 /* matrices.swift */; };
 		698C549EC01F405A3B3A83FF /* transformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C53BC51E35071F63828AF /* transformations.swift */; };
 		698C5545E29B790CC0B1ED5A /* colorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5667F6A2221BEC4D2E33 /* colorsTests.swift */; };
+		698C55494AB9CD9FB2F4B3F2 /* planes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5C15C04C81A84C1AE4CD /* planes.swift */; };
 		698C5577E76F329DD47F9BD7 /* spheres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5058329B1A5161843994 /* spheres.swift */; };
 		698C559A03A51D20B17472D3 /* tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5297301F0B7DF08C969B /* tuple.swift */; };
 		698C55EF5FC821534EF5DF91 /* camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C51082B831F136E81B61E /* camera.swift */; };
@@ -32,6 +34,7 @@
 		698C59D38D4F431A16A28F5C /* renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5490B298F14F6105ED24 /* renderable.swift */; };
 		698C5A0885B87462DBC0A2C6 /* raysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5602F69249392D0AF1B4 /* raysTests.swift */; };
 		698C5A51F2A7AA734FB56772 /* intersectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5B886C24DB5261374FED /* intersectionsTests.swift */; };
+		698C5A916C8D8E0CCD9FE0A1 /* planes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5C15C04C81A84C1AE4CD /* planes.swift */; };
 		698C5AE653FACE8ABF937FEB /* lights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C569134FAF07804210E1B /* lights.swift */; };
 		698C5AF4648C4F0A943DA719 /* canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C546E1D4900F39B6DA927 /* canvas.swift */; };
 		698C5B7A62E1A5D56FE24B50 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5A6EA7DF0BA5AFF331AF /* Assertions.swift */; };
@@ -43,6 +46,9 @@
 		698C5F295EFEE3EEA4EC829E /* rays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C569B583D01CEA6966641 /* rays.swift */; };
 		698C5F5BC94A14A90AEF5C13 /* cameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C53360864AFF4EF9DE794 /* cameraTests.swift */; };
 		698C5FBAEB15F99888019668 /* transformationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5428A4D82F6F0A31E9F7 /* transformationsTests.swift */; };
+		B79EAEDD226C36CB00849540 /* patternsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79EAEDC226C36CB00849540 /* patternsTests.swift */; };
+		B79EAEDF226C390F00849540 /* patterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79EAEDE226C390F00849540 /* patterns.swift */; };
+		B79EAEE0226C390F00849540 /* patterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79EAEDE226C390F00849540 /* patterns.swift */; };
 		B7E84EDF225C416000ED7177 /* tuplesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E84EDE225C416000ED7177 /* tuplesTests.swift */; };
 		B7E84EE5225C4B6400ED7177 /* tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C5297301F0B7DF08C969B /* tuple.swift */; };
 		B7E84EE7225D81FC00ED7177 /* canvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E84EE6225D81FC00ED7177 /* canvasTests.swift */; };
@@ -80,13 +86,17 @@
 		698C58CEE8F7997AD2648DF2 /* projectile_demo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = projectile_demo.swift; sourceTree = "<group>"; };
 		698C5A5F4844B9D85E27F216 /* worldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = worldTests.swift; sourceTree = "<group>"; };
 		698C5A6EA7DF0BA5AFF331AF /* Assertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
+		698C5AAF9A230E8836900CEC /* planesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = planesTests.swift; sourceTree = "<group>"; };
 		698C5B3ED23329F09BB8EB37 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		698C5B886C24DB5261374FED /* intersectionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = intersectionsTests.swift; sourceTree = "<group>"; };
 		698C5B92DDB59BDEBBE69EA9 /* materials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = materials.swift; sourceTree = "<group>"; };
+		698C5C15C04C81A84C1AE4CD /* planes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = planes.swift; sourceTree = "<group>"; };
 		698C5EBEDC04F2231B8ECCCC /* materialsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = materialsTests.swift; sourceTree = "<group>"; };
 		698C5F5F292E998D8F34BB92 /* colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
 		698C5FB33720087887410797 /* spheresTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spheresTests.swift; sourceTree = "<group>"; };
 		698C5FECCFDA1BA955BDACCF /* lightsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lightsTests.swift; sourceTree = "<group>"; };
+		B79EAEDC226C36CB00849540 /* patternsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = patternsTests.swift; sourceTree = "<group>"; };
+		B79EAEDE226C390F00849540 /* patterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = patterns.swift; sourceTree = "<group>"; };
 		B7E84EDC225C416000ED7177 /* RayTracerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RayTracerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E84EDE225C416000ED7177 /* tuplesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tuplesTests.swift; sourceTree = "<group>"; };
 		B7E84EE0225C416000ED7177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -146,6 +156,8 @@
 				698C55C98E568EA7BCC633DE /* world.swift */,
 				698C51082B831F136E81B61E /* camera.swift */,
 				698C5490B298F14F6105ED24 /* renderable.swift */,
+				698C5C15C04C81A84C1AE4CD /* planes.swift */,
+				B79EAEDE226C390F00849540 /* patterns.swift */,
 			);
 			path = RayTracerChallenge;
 			sourceTree = "<group>";
@@ -167,6 +179,8 @@
 				698C5EBEDC04F2231B8ECCCC /* materialsTests.swift */,
 				698C5A5F4844B9D85E27F216 /* worldTests.swift */,
 				698C53360864AFF4EF9DE794 /* cameraTests.swift */,
+				698C5AAF9A230E8836900CEC /* planesTests.swift */,
+				B79EAEDC226C36CB00849540 /* patternsTests.swift */,
 			);
 			path = RayTracerTests;
 			sourceTree = "<group>";
@@ -267,10 +281,12 @@
 				698C51FDDEDC908A797B863F /* rays.swift in Sources */,
 				698C5577E76F329DD47F9BD7 /* spheres.swift in Sources */,
 				698C58AC8FD3D4290FC07D24 /* materials.swift in Sources */,
+				B79EAEDF226C390F00849540 /* patterns.swift in Sources */,
 				698C5F1C4045078D5201A3FD /* lights.swift in Sources */,
 				698C51F69366593FB8D30AEE /* world.swift in Sources */,
 				698C55EF5FC821534EF5DF91 /* camera.swift in Sources */,
 				698C5D9EC0E932EC67DB0C34 /* renderable.swift in Sources */,
+				698C5A916C8D8E0CCD9FE0A1 /* planes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +296,7 @@
 			files = (
 				B7E84EDF225C416000ED7177 /* tuplesTests.swift in Sources */,
 				B7E84EE5225C4B6400ED7177 /* tuple.swift in Sources */,
+				B79EAEDD226C36CB00849540 /* patternsTests.swift in Sources */,
 				698C5B7A62E1A5D56FE24B50 /* Assertions.swift in Sources */,
 				B7E84EE7225D81FC00ED7177 /* canvasTests.swift in Sources */,
 				698C51DAF1B2EC62F27A6761 /* canvas.swift in Sources */,
@@ -303,6 +320,9 @@
 				698C5F5BC94A14A90AEF5C13 /* cameraTests.swift in Sources */,
 				698C5EB0C8EBEB056EC25297 /* camera.swift in Sources */,
 				698C59D38D4F431A16A28F5C /* renderable.swift in Sources */,
+				B79EAEE0226C390F00849540 /* patterns.swift in Sources */,
+				698C532BB93B73B72AF70BB3 /* planesTests.swift in Sources */,
+				698C55494AB9CD9FB2F4B3F2 /* planes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
