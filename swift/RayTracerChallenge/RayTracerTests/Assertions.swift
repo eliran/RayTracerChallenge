@@ -43,6 +43,16 @@ extension AssertExpectation where T: Equatable {
     }
 }
 
+extension AssertExpectation where T: DynamicEquatable {
+    static func === (lhs: AssertExpectation<T>, rhs: T) {
+        XCTAssertTrue(lhs.value.isEqual(other: rhs), file: lhs.file, line: lhs.line)
+    }
+
+    static func !== (lhs: AssertExpectation<T>, rhs: T) {
+        XCTAssertFalse(lhs.value.isEqual(other: rhs), file: lhs.file, line: lhs.line)
+    }
+}
+
 infix operator ~: ComparisonPrecedence
 infix operator !~: ComparisonPrecedence
 

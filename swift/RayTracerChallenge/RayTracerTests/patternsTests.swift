@@ -45,4 +45,24 @@ class PatternsTests: XCTestCase {
     expect(pattern.at(point(x: -1, y: 0, z: 0))) == black
     expect(pattern.at(point(x: -1.1, y: 0, z: 0))) == white
   }
+
+  func test_stripes_with_an_object_transformation() {
+    let p = Color.stripe(white, black)
+    let o = Shapes.sphere().set(transform: .scaling(x: 2, y: 2, z: 2))
+
+    expect(p.at(point(x: 1.5, y: 0, z: 0), for: o)) == white
+  }
+
+  func test_stripes_with_a_pattern_transformation() {
+    let p = Color.stripe(white, black).set(transform: .scaling(x: 2, y: 2, z: 2))
+
+    expect(p.at(point(x: 1.5, y: 0, z: 0), for: nil)) == white
+  }
+
+  func test_stripes_with_both_an_object_and_pattern_transformation() {
+    let p = Color.stripe(white, black).set(transform: .translation(x: 0.5, y: 0, z: 0))
+    let o = Shapes.sphere().set(transform: .scaling(x: 2, y: 2, z: 2))
+
+    expect(p.at(point(x: 2.5, y: 0, z: 0), for: o)) == white
+  }
 }

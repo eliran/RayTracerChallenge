@@ -12,13 +12,13 @@ struct Color {
 }
 
 extension Double {
-    func equals(_ other: Double, epsilon: Double = 0.01) -> Bool {
+    func equals(_ other: Double, epsilon: Double = Double.EPSILON) -> Bool {
         return abs(self-other) <= epsilon
     }
 }
 
 extension Color: ColorByPosition {
-  func at(_ point: Point) -> Color {
+  func at(_ point: Point, for object: Renderable?) -> Color {
     return self
   }
 }
@@ -30,6 +30,12 @@ func color(r: Double, g: Double, b: Double) -> Color {
 extension Color: Equatable {
     public static func ==(lhs: Color, rhs: Color) -> Bool {
         return lhs.r.equals(rhs.r) && lhs.g.equals(rhs.g) && lhs.b.equals(rhs.b)
+    }
+}
+
+extension Color: DynamicEquatable {
+    func isEqual(other: Any?) -> Bool {
+        return self == (other as? Color)
     }
 }
 

@@ -246,7 +246,7 @@ class Ch7Scene: Demo {
         let c = Camera(hsize: 400, vsize: 200, fov: .pi/3)
             .set(transform: .view(from: point(x: 0, y: 1.5, z: -5), to: point(x: 0, y: 1, z: 0), up: vector(x: 0, y: 1, z: 0)))
 
-        let floor = Shapes.sphere().set(material: .make(color: color(r: 1, g: 0.9, b: 0.9), specular: 0)).set(transform: .scaling(x: 10, y: 0.01, z: 10))
+        let floor = Shapes.sphere().set(material: .make(color: Color.stripe(color(r: 1, g: 0, b: 0), color(r: 0, g: 1, b: 0)), specular: 0)).set(transform: .scaling(x: 10, y: 0.01, z: 10))
         let leftWall = Shapes.sphere().set(material: floor.material)
             .set(transform: Matrix.scaling(x: 10, y: 0.01, z: 10).rotate(x: .pi/2).rotate(y: .pi / -4).translate(x: 0, y: 0, z: 5))
         let rightWall = Shapes.sphere().set(material: floor.material)
@@ -286,18 +286,19 @@ class Ch9Scene: Demo {
 
   static func invoke() -> Canvas? {
     let w = World()
-    let c = Camera(hsize: 400, vsize: 200, fov: .pi/3)
+    let scale = 4.0
+    let p1 = Color.stripe(color(r: 1, g: 0, b: 0), color(r: 0, g: 1, b: 0)).set(transform: .scaling(x: 0.2, y: 0.2, z: 0.2))
+    let p2 = Color.stripe(color(r: 0.1, g: 1, b: 0.5), color(r: 1, g: 0.5, b: 0.1)).set(transform: .rotation(y: .pi/4))
+    let c = Camera(hsize: 400*scale, vsize: 200*scale, fov: .pi/3)
       .set(transform: .view(from: point(x: 0, y: 1.5, z: -5), to: point(x: 0, y: 1, z: 0), up: vector(x: 0, y: 1, z: 0)))
 
-    let floor = Shapes.plane().set(material: .make(color: color(r: 1, g: 0.9, b: 0.9), specular: 0)).set(transform: .scaling(x: 10, y: 0.01, z: 10))
+    let floor = Shapes.plane().set(material: .make(color: p1, specular: 0)).set(transform: .scaling(x: 10, y: 0.01, z: 10))
 //    let leftWall = Shapes.sphere().set(material: floor.material)
 //      .set(transform: Matrix.scaling(x: 10, y: 0.01, z: 10).rotate(x: .pi/2).rotate(y: .pi / -4).translate(x: 0, y: 0, z: 5))
 //    let rightWall = Shapes.sphere().set(material: floor.material)
 //      .set(transform: Matrix.scaling(x: 10, y: 0.01, z: 10).rotate(x: .pi/2).rotate(y: .pi/4).translate(x: 0, y: 0, z: 5))
 
-    let other = Shapes.plane().set(material: .make(color: color(r: 1, g: 0, b: 0))).set(transform: .rotation(x: -.pi/4))
-
-    let middle = Shapes.sphere().set(material: .make(color: color(r: 0.1, g: 1, b: 0.5), diffuse: 0.7, specular: 0.3))
+    let middle = Shapes.sphere().set(material: .make(color: p2, diffuse: 0.7, specular: 0.3))
       .set(transform: .translation(x: -0.5, y: 1, z: 0.5))
 
     let right = Shapes.sphere().set(material: .make(color: color(r: 0.5, g: 1, b: 0.1), diffuse: 0.7, specular: 0.3))
@@ -306,7 +307,7 @@ class Ch9Scene: Demo {
     let left = Shapes.sphere().set(material: .make(color: color(r: 1, g: 0.8, b: 0.1), diffuse: 0.7, specular: 0.3))
       .set(transform: Matrix.scaling(x: 0.33, y: 0.33, z: 0.33).translate(x: -1.5, y: 0.33, z: -0.75))
 
-    w.add(objects: floor, left, right, middle, other)
+    w.add(objects: floor, left, right, middle)
       .add(light: Light.point(position: point(x: -10, y: 10, z: -10), intensity: color(r: 1, g: 1, b: 1)))
 
     //            .add(light: Light.point(position: point(x: 10, y: 10, z: -10), intensity: color(r: 1, g: 0, b: 0)))

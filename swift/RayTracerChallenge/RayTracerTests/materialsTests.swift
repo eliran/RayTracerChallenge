@@ -9,7 +9,7 @@ class MaterialsTests: XCTestCase {
     func test_the_default_material() {
         let m = Material.make()
 
-        expect(m.color) == color(r: 1, g: 1, b: 1)
+        expect(m.color.at(point(x: 0, y: 0, z: 0))) == color(r: 1, g: 1, b: 1)
         expect(m.ambient) == 0.1
         expect(m.diffuse) == 0.9
         expect(m.specular) == 0.9
@@ -72,5 +72,15 @@ class LightingTests: XCTestCase {
         let light = Light.point(position: point(x: 0, y: 0, z: -10), intensity: color(r: 1, g: 1, b: 1))
 
         expect(m.lighting(light: light, position: p, eye: eyev, normal: normalv, inShadow: true)) == color(r: 0.1, g: 0.1, b: 0.1)
+    }
+
+    func test_lighting_with_a_pattern_applied() {
+        let m = Material.make(color: Color.stripe(color(r: 1, g: 1, b: 1), color(r: 0, g: 0, b: 0)), ambient: 1, diffuse: 0, specular: 0)
+        let eyev = vector(x: 0, y: 0, z: -1)
+        let normalv = vector(x: 0, y: 0, z: -1)
+        let light = Light.point(position: point(x: 0, y: 0, z: -10), intensity: color(r: 1, g: 1, b: 1))
+
+        expect(m.lighting(light: light, position: point(x: 0.9, y: 0, z: 0), eye: eyev, normal: normalv)) == color(r: 1, g: 1, b: 1)
+        expect(m.lighting(light: light, position: point(x: 1.1, y: 0, z: 0), eye: eyev, normal: normalv)) == color(r: 0, g: 0, b: 0)
     }
 }

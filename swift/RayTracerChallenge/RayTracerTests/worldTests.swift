@@ -116,7 +116,7 @@ class WorldTests: XCTestCase {
         let i = w.objects.last!.updateMaterial { $0.copy(ambient: 1) }
         let r = ray(origin: point(x: 0, y: 0, z: 0.75), direction: vector(x: 0, y: 0, z: -1))
 
-        expect(w.color(for: r)) == i.material.color
+        expect(w.color(for: r)) == i.material.color.at(point(x: 0, y: 0, z: 0))
     }
 
     func test_there_is_no_shadow_when_nothing_is_collinear_with_point_and_light() {

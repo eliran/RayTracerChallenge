@@ -64,10 +64,6 @@ struct IntersectionComputation {
     let overPoint: Point
 }
 
-extension Double {
-    static let EPSILON = 0.0001
-}
-
 extension Intersection {
     func prepare(for ray: Ray) -> IntersectionComputation {
         let p = ray.position(t)

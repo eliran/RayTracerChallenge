@@ -5,12 +5,20 @@
 
 import Foundation
 
-protocol ColorByPosition {
+protocol ColorByPosition: DynamicEquatable {
+  func at(_ point: Point, for object: Renderable?) -> Color
   func at(_ point: Point) -> Color
 }
 
+extension ColorByPosition {
+  func at(_ point: Point) -> Color {
+    return self.at(point, for: nil)
+  }
+}
+
+
 struct Material {
-    let color: Color
+    let color: ColorByPosition
     let ambient: Double
     let diffuse: Double
     let specular: Double
@@ -18,12 +26,20 @@ struct Material {
 }
 
 extension Material {
-    static func make(color: Color = Color(r: 1, g: 1, b: 1), ambient: Double = 0.1, diffuse: Double = 0.9, specular: Double = 0.9, shininess: Double = 200) -> Material {
+    static func make(color: ColorByPosition = Color(r: 1, g: 1, b: 1), ambient: Double = 0.1, diffuse: Double = 0.9, specular: Double = 0.9, shininess: Double = 200) -> Material {
         return Material(color: color, ambient: ambient, diffuse: diffuse, specular: specular, shininess: shininess)
     }
 }
 
-extension Material: Equatable {}
+extension Material: Equatable {
+    public static func ==(lhs: Material, rhs: Material) -> Bool {
+        return lhs.color.isEqual(other: rhs.color) &&
+            lhs.ambient == rhs.ambient &&
+            lhs.diffuse == rhs.diffuse &&
+            lhs.specular == rhs.specular &&
+            lhs.shininess == rhs.shininess
+    }
+}
 
 extension Material {
     func copy(color: Color? = nil, ambient: Double? = nil, diffuse: Double? = nil, specular: Double? = nil, shininess: Double? = nil) -> Material {

@@ -20,7 +20,7 @@ extension PointLight: Equatable {}
 
 extension Material {
     func lighting(light: PointLight, position: Point, eye: Vector, normal: Vector, inShadow: Bool = false) -> Color {
-        let effectiveColor = color * light.intensity
+        let effectiveColor = color.at(position) * light.intensity
         let lightVector = (light.position - position).normal
         let ambient = effectiveColor * self.ambient
 
